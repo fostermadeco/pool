@@ -1,0 +1,29 @@
+{
+    "name": "fostermadeco/pool",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Adam Winfree",
+            "email": "adam.winfree@fostermade.co"
+        }
+    ],
+    "require": {
+        "illuminate/support": "5.6.*",
+        "segmentio/analytics-php": "^1.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "FosterMadeCo\\Pool\\": "src/Pool"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "FosterMadeCo\\Pool\\PoolServiceProvider"
+            ],
+            "aliases": {
+                "Analytics": "FosterMadeCo\\Pool\\Facades\\Analytics"
+            }
+        }
+    }
+}
