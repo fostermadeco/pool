@@ -191,5 +191,7 @@ is updated, then a `identify` call will need to be added.
 The easiest way to do this is to use `FosterMadeCo\Pool\Identify::call` like so:
 
 ```php
-`FosterMadeCo\Pool\Identify::call(null, )
+FosterMadeCo\Pool\Identify::call(null, $traits = [ ... ]); // $traits can be null
 ```
+
+An anonymous user with a UUID will be created.
