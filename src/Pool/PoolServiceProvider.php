@@ -4,6 +4,7 @@ namespace FosterMadeCo\Pool;
 
 use FosterMadeCo\Pool\Analytics;
 use FosterMadeCo\Pool\Fields\IdentityTraits;
+use FosterMadeCo\Pool\Fields\TrackProperties;
 use Illuminate\Support\ServiceProvider;
 use Segment;
 
@@ -38,6 +39,8 @@ class PoolServiceProvider extends ServiceProvider
         $this->registerAnalytics();
 
         $this->registerIdentityTraits();
+
+        $this->registerTrackProperties();
     }
 
     /**
@@ -57,6 +60,16 @@ class PoolServiceProvider extends ServiceProvider
     {
         $this->app->bind(IdentityTraits::class, function ($app) {
             return new IdentityTraits($app->make('validator'));
+        });
+    }
+
+    /**
+     * Register the IdentityTraits
+     */
+    public function registerTrackProperties()
+    {
+        $this->app->bind(TrackProperties::class, function ($app) {
+            return new TrackProperties($app->make('validator'));
         });
     }
 }
