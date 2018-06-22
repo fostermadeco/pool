@@ -97,7 +97,7 @@ class IdentityTraits implements Field
      */
     public static function createFromArray(array $array)
     {
-        $traits = new self(app()->make('validator'));
+        $traits = new self();
 
         foreach ($array as $attribute => $value) {
             if (is_int($attribute)) {
@@ -121,7 +121,7 @@ class IdentityTraits implements Field
      */
     public static function createFromModel(Authenticatable $model)
     {
-        $traits = new self(app()->make('validator'));
+        $traits = new self();
 
         foreach ($model->traits as $attribute => $value) {
             if (is_int($attribute)) {
