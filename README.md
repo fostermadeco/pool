@@ -4,7 +4,7 @@ A Segment package for Laravel.
 
 Currently 5.6 is the only version of Laravel supported.
 
-Add this to the project's `composer.json` if an OAuth token is being used:
+Add this to the project's repositories array in `composer.json` if an OAuth token is being used:
 
 ```
 {
@@ -218,7 +218,7 @@ specify the model, e.g.,:
 ```$php
 $user = User::find(123);
 
-FosterMadeCo\Pool\Identify::call($user)
+FosterMadeCo\Pool\Identify::call($user);
 ```
 
 #### Current Limitations
