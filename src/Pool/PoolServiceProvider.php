@@ -2,9 +2,7 @@
 
 namespace FosterMadeCo\Pool;
 
-use FosterMadeCo\Pool\Analytics;
-use FosterMadeCo\Pool\Fields\IdentityTraits;
-use FosterMadeCo\Pool\Fields\TrackProperties;
+use FosterMadeCo\Pool\Fields\PageProperties;
 use Illuminate\Support\ServiceProvider;
 use Segment;
 
@@ -37,39 +35,15 @@ class PoolServiceProvider extends ServiceProvider
         }
 
         $this->registerAnalytics();
-
-        $this->registerIdentityTraits();
-
-        $this->registerTrackProperties();
     }
 
     /**
-     * Register the IdentityTraits
+     * Register the Analytics Facade
      */
     public function registerAnalytics()
     {
         $this->app->singleton('analytics', function ($app) {
             return new Analytics();
-        });
-    }
-
-    /**
-     * Register the IdentityTraits
-     */
-    public function registerIdentityTraits()
-    {
-        $this->app->bind(IdentityTraits::class, function ($app) {
-            return new IdentityTraits($app->make('validator'));
-        });
-    }
-
-    /**
-     * Register the IdentityTraits
-     */
-    public function registerTrackProperties()
-    {
-        $this->app->bind(TrackProperties::class, function ($app) {
-            return new TrackProperties($app->make('validator'));
         });
     }
 }

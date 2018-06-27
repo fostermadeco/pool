@@ -6,7 +6,6 @@ use FosterMadeCo\Pool\Exceptions\ArrayKeyRequiredException;
 use FosterMadeCo\Pool\Exceptions\FieldInvalidException;
 use FosterMadeCo\Pool\Exceptions\FieldNotAFloatOrIntegerException;
 use FosterMadeCo\Pool\Exceptions\FieldNotAStringException;
-use Illuminate\Contracts\Validation\Factory;
 use Illuminate\Support\Str;
 
 class TrackProperties implements Field
@@ -22,21 +21,6 @@ class TrackProperties implements Field
     public static $reservedProperties = [
         'currency', 'revenue', 'value',
     ];
-
-    /**
-     * @var \Illuminate\Contracts\Validation\Factory
-     */
-    protected $validator;
-
-    /**
-     * TrackProperties constructor.
-     *
-     * @param \Illuminate\Contracts\Validation\Factory $validator
-     */
-    public function __construct(Factory $validator)
-    {
-        $this->validator = $validator;
-    }
 
     /**
      * @param string $name
