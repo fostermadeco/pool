@@ -32,18 +32,9 @@ class Page extends BaseCall
 
     /**
      * Page constructor.
-     *
-     * @param string|null $name
-     * @param string|null $category
-     * @param array|null $properties
-     * @throws \FosterMadeCo\Pool\Exceptions\FieldInvalidException
-     * @throws \FosterMadeCo\Pool\Exceptions\PoolException
      */
-    public function __construct($name = null, $category = null, $properties = null)
+    public function __construct()
     {
-        $this->setName($name);
-        $this->setCategory($category);
-        $this->setProperties($properties);
         $this->setContext();
     }
 
@@ -113,7 +104,7 @@ class Page extends BaseCall
      */
     public function setProperties($properties)
     {
-        $this->properties = is_null($properties) ? $properties : PageProperties::create($properties);
+        $this->properties = PageProperties::create($properties);
     }
 
     /**
@@ -126,8 +117,20 @@ class Page extends BaseCall
      */
     public static function call($name = null, $category = null, $properties = null, Authenticatable $model = null)
     {
-        $page = new self($name, $category, $properties);
+        $page = new self();
         $page->setIdentificationKey($model);
+
+        if (!is_null($name)) {
+            $page->setName($name);
+        }
+
+        if (!is_null($category)) {
+            $page->setCategory($category);
+        }
+
+        if (!is_null($category)) {
+            $page->setProperties($properties);
+        }
 
         return $page->sendRequest();
     }

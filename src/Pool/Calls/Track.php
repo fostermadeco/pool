@@ -27,13 +27,11 @@ class Track extends BaseCall
      * Track constructor.
      *
      * @param string $event
-     * @param array $properties
      * @throws \FosterMadeCo\Pool\Exceptions\PoolException
      */
-    public function __construct($event, $properties = null)
+    public function __construct($event)
     {
         $this->setEvent($event);
-        $this->setProperties($properties);
         $this->setContext();
     }
 
@@ -86,20 +84,24 @@ class Track extends BaseCall
      */
     public function setProperties($properties)
     {
-        $this->properties = is_null($properties) ? $properties : TrackProperties::create($properties);
+        $this->properties = TrackProperties::create($properties);
     }
 
     /**
      * @param string $event
-     * @param array $properties
+     * @param array|null $properties
      * @param \Illuminate\Contracts\Auth\Authenticatable|null $model
      * @return bool
      * @throws \FosterMadeCo\Pool\Exceptions\PoolException
      */
     public static function call($event, $properties = null, Authenticatable $model = null)
     {
-        $track = new self($event, $properties);
+        $track = new self($event);
         $track->setIdentificationKey($model);
+
+        if (!is_null($properties)) {
+            $track->setProperties($properties);
+        }
 
         return $track->sendRequest();
     }
