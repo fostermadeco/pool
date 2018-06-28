@@ -202,19 +202,6 @@ class IdentityTraits implements Field
     }
 
     /**
-     * @param string $value
-     * @throws \FosterMadeCo\Pool\Exceptions\FieldNotAStringException
-     */
-    protected function setDescription($value)
-    {
-        if (!is_string($value)) {
-            throw new FieldNotAStringException('description');
-        }
-
-        $this->traits['description'] = $value;
-    }
-
-    /**
      * @param object|array $value
      * @throws \FosterMadeCo\Pool\Exceptions\FieldNotAnObjectOrArrayException
      */
@@ -242,6 +229,19 @@ class IdentityTraits implements Field
         }
 
         $this->traits['created_at'] = $value;
+    }
+
+    /**
+     * @param string $value
+     * @throws \FosterMadeCo\Pool\Exceptions\FieldNotAStringException
+     */
+    protected function setDescription($value)
+    {
+        if (!is_string($value)) {
+            throw new FieldNotAStringException('description');
+        }
+
+        $this->traits['description'] = $value;
     }
 
     /**
