@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Facade;
 
 /**
  * @method static bool identify()
+ * @method static bool page()
+ * @method static bool track()
  *
  * @see \FosterMadeCo\Pool\Analytics
  */
