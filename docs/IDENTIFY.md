@@ -1,9 +1,9 @@
 # Identify
 
-1. [Identifying Authenticated Users](#1.-identifying-authenticated-users)
-2. [Identifying Non-Anonymous Users](#2.-identifying-non-anonymous-users)
-3. [Making `identify` Calls In the Application](#3.-making-identify-calls-in-the-application)
-4. [Method Descriptions](#4.-method-descriptions)
+1. [Identifying Authenticated Users](#1-identifying-authenticated-users)
+2. [Identifying Non-Anonymous Users](#2-identifying-non-anonymous-users)
+3. [Making `identify` Calls In the Application](#3-making-identify-calls-in-the-application)
+4. [Method Descriptions](#4-method-descriptions)
 
 ## 1. Identifying Authenticated Users
 
