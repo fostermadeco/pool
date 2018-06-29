@@ -2,12 +2,24 @@
 
 namespace FosterMadeCo\Pool;
 
+use FosterMadeCo\Pool\Calls\Group;
 use FosterMadeCo\Pool\Calls\Identify;
 use FosterMadeCo\Pool\Calls\Page;
 use FosterMadeCo\Pool\Calls\Track;
+use Illuminate\Database\Eloquent\Model;
 
 class Analytics
 {
+    /**
+     * @param \Illuminate\Database\Eloquent\Model $group
+     * @return bool
+     * @throws \FosterMadeCo\Pool\Exceptions\PoolException
+     */
+    public static function group(Model $group)
+    {
+        return Group::call($group, auth()->user());
+    }
+
     /**
      * @return bool
      * @throws \FosterMadeCo\Pool\Exceptions\PoolException

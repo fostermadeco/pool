@@ -5,6 +5,7 @@ namespace FosterMadeCo\Pool\Facades;
 use Illuminate\Support\Facades\Facade;
 
 /**
+ * @method static bool group()
  * @method static bool identify()
  * @method static bool page()
  * @method static bool track()
