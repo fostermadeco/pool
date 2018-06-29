@@ -5,6 +5,7 @@ namespace FosterMadeCo\Pool;
 use FosterMadeCo\Pool\Calls\Group;
 use FosterMadeCo\Pool\Calls\Identify;
 use FosterMadeCo\Pool\Calls\Page;
+use FosterMadeCo\Pool\Calls\Screen;
 use FosterMadeCo\Pool\Calls\Track;
 use Illuminate\Database\Eloquent\Model;
 
@@ -39,6 +40,17 @@ class Analytics
     public static function page($name = null, $category = null, $properties = null)
     {
         return Page::call($name, $category, $properties, auth()->user());
+    }
+
+    /**
+     * @param string $name
+     * @param array|null $properties
+     * @return bool
+     * @throws \FosterMadeCo\Pool\Exceptions\PoolException
+     */
+    public static function screen($name, $properties = null)
+    {
+        return Screen::call($name, $properties, auth()->user());
     }
 
     /**
