@@ -92,8 +92,8 @@ is sent.
 
 ## 2. Making `group` calls in the application
 
-Use `\Analytics::group($group)` to assign the authenticated user to a group
-where `$group` is an Eloquent model.
+Use `\Analytics::group(\Illuminate\Database\Eloquent\Model $group)` to assign the
+authenticated user to a group where `$group` is an Eloquent model.
 
 To make a `group` call for another user, use `\FosterMadeCo\Pool\Group::call()` and
 specify the model, for example:
@@ -103,7 +103,7 @@ $user = \App\User::find(123);
 
 $group = \App\Company::find(456);
 
-\FosterMadeCo\Pool\Page::call($group, $user)
+\FosterMadeCo\Pool\Group::call($group, $user);
 ```
 
 ## 3. Method Descriptions

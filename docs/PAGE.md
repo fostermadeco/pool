@@ -2,13 +2,13 @@
 
 ## Making `page` calls in the application
 
-Use `\Analytics::page($name, $category, $properties)`
-to track an event on the authenticated user. Where `$name` is the name of the page, `$category` is a
-categorization of the page, and `$properties` is an array of data points to collect about the event.
-None of these parameters are required.
+Use `\Analytics::page($name, $category, $properties)` to log a page the authenticated
+user has viewed. Where `$name` is the name of the page, `$category` is a
+categorization of the page, and `$properties` is an array of data points to collect
+about the event.
 
 To make a `page` call for another user, use `\FosterMadeCo\Pool\Page::call()` and
-specify the model, for example:
+specify the user model, for example:
 
 ```php
 $user = \App\User::find(123);
@@ -24,7 +24,7 @@ $properties = [
     ],
 ];
 
-\FosterMadeCo\Pool\Page::call($name, $category, $properties, $user)
+\FosterMadeCo\Pool\Page::call($name, $category, $properties, $user);
 ```
 
 ## Method Descriptions

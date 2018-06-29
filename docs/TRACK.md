@@ -7,7 +7,7 @@ authenticated user. Where `$event` is the name of the thing being tracked and
 `$properties` is an array of data points to collect about the event.
 
 To make a `track` call for another user, use `FosterMadeCo\Pool\Track::call()` and
-specify the model, for example:
+specify the user model, for example:
 
 ```php
 $user = \App\User::find(123);
