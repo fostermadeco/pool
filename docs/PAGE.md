@@ -8,7 +8,7 @@ categorization of the page, and `$properties` is an array of data points to coll
 None of these parameters are required.
 
 To make a `page` call for another user, use
-`\FosterMadeCo\Pool\Page::call($name, $category, $properties, $model)`
+`\FosterMadeCo\Pool\Page::call()`
 and specify the model, for example:
 
 ```php

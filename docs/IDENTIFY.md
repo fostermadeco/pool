@@ -71,7 +71,7 @@ class Admin extends Authenticatable
             "street" => $this->attributes["address"],
             "city" => $this->attributes["city"],
             "state" => $this->attributes["state"],
-            "postal_code" => $this->attributes["zip"]
+            "postal_code" => $this->attributes["zip"],
         ];
     }
 }
@@ -89,9 +89,9 @@ Will yield:
             "user_type" => "Administrator",
             "address => [
                 "street" => "200 Laravel Ln",
-                "city" => "Cair Paravel"
-                "state" => "Narnia"
-                "postal_code" => null
+                "city" => "Cair Paravel",
+                "state" => "Narnia",
+                "postal_code" => null,
             ]
         ],
         ...
