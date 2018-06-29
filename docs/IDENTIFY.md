@@ -87,7 +87,7 @@ Will yield:
             "first_name" => "Taylor",
             "last_name" => "Otwell",
             "user_type" => "Administrator",
-            "address => [
+            "address" => [
                 "street" => "200 Laravel Ln",
                 "city" => "Cair Paravel",
                 "state" => "Narnia",
@@ -98,10 +98,9 @@ Will yield:
     ]
 ```
 
-
 Segment has certain traits with reserved meanings. In an attempt to enforce data
-integrity before it is sent to Segment, Exceptions will be thrown if incorrect
-data is sent.
+integrity before it is sent to Segment, Exceptions will be thrown if incorrect data
+is sent.
 
 ### Idenfify After Create or Update
 

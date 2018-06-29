@@ -7,9 +7,8 @@ to track an event on the authenticated user. Where `$name` is the name of the pa
 categorization of the page, and `$properties` is an array of data points to collect about the event.
 None of these parameters are required.
 
-To make a `page` call for another user, use
-`\FosterMadeCo\Pool\Page::call()`
-and specify the model, for example:
+To make a `page` call for another user, use `\FosterMadeCo\Pool\Page::call()` and
+specify the model, for example:
 
 ```php
 $user = \App\User::find(123);
