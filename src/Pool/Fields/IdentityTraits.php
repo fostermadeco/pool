@@ -2,6 +2,8 @@
 
 namespace FosterMadeCo\Pool\Fields;
 
+use DateTime;
+use DateTimeInterface;
 use FosterMadeCo\Pool\Exceptions\ArrayKeyRequiredException;
 use FosterMadeCo\Pool\Exceptions\FieldInvalidException;
 use FosterMadeCo\Pool\Exceptions\FieldNotADateException;
@@ -226,6 +228,14 @@ class IdentityTraits implements Field
 
         if ($validation->fails()) {
             throw new FieldNotADateException('created at');
+        }
+
+        if (is_string($value)) {
+            $value = new DateTime($value);
+        }
+
+        if ($value instanceof DateTimeInterface) {
+            $value = $value->format(DateTime::ATOM);
         }
 
         $this->traits['created_at'] = $value;
