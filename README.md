@@ -8,6 +8,7 @@ It formats the data as needed and uses `segmentio/analytics-php` to make the API
 1. [Identify](docs/IDENTIFY.md)
 2. [Track](docs/TRACK.md)
 3. [Page](docs/PAGE.md)
+3. [Page](docs/GROUP.md)
 
 ## Installation
 
