@@ -21,11 +21,12 @@ class Analytics
      * @param string|null $name
      * @param string|null $category
      * @param array|null $properties
+     * @return bool
      * @throws \FosterMadeCo\Pool\Exceptions\PoolException
      */
     public static function page($name = null, $category = null, $properties = null)
     {
-        Page::call($name, $category, $properties, auth()->user());
+        return Page::call($name, $category, $properties, auth()->user());
     }
 
     /**
