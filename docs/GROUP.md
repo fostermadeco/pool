@@ -1,7 +1,7 @@
 # Group
 
 1. [Group Traits](#1-group-traits)
-2. [Making `group` calls in the application](#2-making-page-calls-in-the-application)
+2. [Making `group` calls in the application](#2-making-group-calls-in-the-application)
 3. [Method Descriptions](#3-method-descriptions)
 
 ## 1. Group Traits
