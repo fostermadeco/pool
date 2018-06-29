@@ -30,7 +30,7 @@ class PageProperties implements Field
     protected $validator;
 
     /**
-     * TrackProperties constructor.
+     * PageProperties constructor.
      *
      * @param \Illuminate\Contracts\Validation\Factory $validator
      */
@@ -87,7 +87,7 @@ class PageProperties implements Field
 
     /**
      * @param array $array
-     * @return \App\Services\Segment\Fields\PageProperties
+     * @return \FosterMadeCo\Pool\Fields\PageProperties
      * @throws \FosterMadeCo\Pool\Exceptions\ArrayKeyRequiredException
      */
     public static function create(array $array)
