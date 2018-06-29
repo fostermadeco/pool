@@ -3,6 +3,12 @@ A Segment package for Laravel.
 The goal of this package is to make it easier to use Segmento within a Laravel package.
 It formats the data as needed and uses `segmentio/analytics-php` to make the API calls.
 
+## Calls
+
+1. [Identify](docs/IDENTIFY.md)
+2. [Track](docs/TRACK.md)
+3. [Page](docs/PAGE.md)
+
 ## Installation
 
 Currently Laravel 5.6 is the only version supported.
@@ -52,9 +58,3 @@ Require the package:
 ```
 composer require fostermadeco/pool
 ```
-
-## Calls
-
-1. [Identify](docs/IDENTIFY.md)
-2. [Track](docs/TRACK.md)
-3. [Page](doc/PAGE.md)
