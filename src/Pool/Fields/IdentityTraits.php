@@ -62,6 +62,7 @@ class IdentityTraits implements Field
     /**
      * @param string $name
      * @param mixed $value
+     * @throws \FosterMadeCo\Pool\Exceptions\PoolException
      */
     public function __set($name, $value)
     {
@@ -120,6 +121,7 @@ class IdentityTraits implements Field
     /**
      * @param \Illuminate\Contracts\Auth\Authenticatable $model
      * @return \FosterMadeCo\Pool\Fields\IdentityTraits
+     * @throws \FosterMadeCo\Pool\Exceptions\PoolException
      */
     public static function createFromModel(Authenticatable $model)
     {
@@ -198,6 +200,14 @@ class IdentityTraits implements Field
 
         if ($validation->fails()) {
             throw new FieldNotADateException('birthday');
+        }
+
+        if (is_string($value)) {
+            $value = new DateTime($value);
+        }
+
+        if ($value instanceof DateTimeInterface) {
+            $value = $value->format(DateTime::ATOM);
         }
 
         $this->traits['birthday'] = $value;
