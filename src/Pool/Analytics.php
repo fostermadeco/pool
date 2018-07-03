@@ -2,6 +2,7 @@
 
 namespace FosterMadeCo\Pool;
 
+use FosterMadeCo\Pool\Calls\Alias;
 use FosterMadeCo\Pool\Calls\Group;
 use FosterMadeCo\Pool\Calls\Identify;
 use FosterMadeCo\Pool\Calls\Page;
@@ -11,6 +12,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class Analytics
 {
+    /**
+     * @param string|int $id
+     * @return bool
+     * @throws \FosterMadeCo\Pool\Exceptions\PoolException
+     */
+    public static function alias($id)
+    {
+        return Alias::call($id, auth()->user());
+    }
+
     /**
      * @param \Illuminate\Database\Eloquent\Model $group
      * @return bool
