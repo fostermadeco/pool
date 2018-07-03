@@ -23,9 +23,10 @@ class Identify extends BaseCall
      */
     public function __construct(Authenticatable $model = null)
     {
+        parent::__construct();
+
         $this->setIdentificationKey($model);
         $this->setTraits($model);
-        $this->setContext();
     }
 
     /**
@@ -41,6 +42,10 @@ class Identify extends BaseCall
 
         if ($this->context) {
             $message['context'] = $this->context->toArray();
+        }
+
+        if ($this->integrations) {
+            $message['integrations'] = $this->integrations;
         }
 
         return $message;

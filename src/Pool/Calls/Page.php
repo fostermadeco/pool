@@ -35,7 +35,7 @@ class Page extends BaseCall
      */
     public function __construct()
     {
-        $this->setContext();
+        parent::__construct();
     }
 
     /**
@@ -59,6 +59,10 @@ class Page extends BaseCall
 
         if ($this->context) {
             $message['context'] = $this->context->toArray();
+        }
+
+        if ($this->integrations) {
+            $message['integrations'] = $this->integrations;
         }
 
         return $message;

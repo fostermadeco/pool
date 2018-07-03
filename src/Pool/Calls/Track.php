@@ -31,8 +31,9 @@ class Track extends BaseCall
      */
     public function __construct($event)
     {
+        parent::__construct();
+
         $this->setEvent($event);
-        $this->setContext();
     }
 
     /**
@@ -52,6 +53,10 @@ class Track extends BaseCall
 
         if ($this->context) {
             $message['context'] = $this->context->toArray();
+        }
+
+        if ($this->integrations) {
+            $message['integrations'] = $this->integrations;
         }
 
         return $message;

@@ -31,8 +31,9 @@ class Screen extends BaseCall
      */
     public function __construct($name)
     {
+        parent::__construct();
+
         $this->setName($name);
-        $this->setContext();
     }
 
     /**
@@ -52,6 +53,10 @@ class Screen extends BaseCall
 
         if ($this->context) {
             $message['context'] = $this->context->toArray();
+        }
+
+        if ($this->integrations) {
+            $message['integrations'] = $this->integrations;
         }
 
         return $message;

@@ -28,9 +28,10 @@ class Alias extends BaseCall
      */
     public function __construct($previousId, Authenticatable $user)
     {
+        parent::__construct();
+
         $this->setPreviousId($previousId);
         $this->setIdentificationKey($user);
-        $this->setContext();
     }
 
     /**
@@ -57,6 +58,10 @@ class Alias extends BaseCall
 
         if ($this->context) {
             $message['context'] = $this->context->toArray();
+        }
+
+        if ($this->integrations) {
+            $message['integrations'] = $this->integrations;
         }
 
         return $message;

@@ -32,10 +32,11 @@ class Group extends BaseCall
      */
     public function __construct(Model $group, Authenticatable $user = null)
     {
+        parent::__construct();
+
         $this->setIdentificationKey($user);
         $this->setGroupIdentificationKey($group);
         $this->setTraits($group);
-        $this->setContext();
     }
 
     /**
@@ -53,6 +54,10 @@ class Group extends BaseCall
 
         if ($this->context) {
             $message['context'] = $this->context->toArray();
+        }
+
+        if ($this->integrations) {
+            $message['integrations'] = $this->integrations;
         }
 
         return $message;
