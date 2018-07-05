@@ -2,6 +2,7 @@
 
 namespace FosterMadeCo\Pool\Fields;
 
+use FosterMadeCo\Pool\Contracts\Field;
 use FosterMadeCo\Pool\Exceptions\FieldNotAnArrayException;
 use FosterMadeCo\Pool\Exceptions\FieldInvalidException;
 use FosterMadeCo\Pool\Exceptions\ArrayKeyRequiredException;
@@ -10,7 +11,7 @@ use FosterMadeCo\Pool\Exceptions\FieldNotAUrlException;
 use Illuminate\Contracts\Validation\Factory;
 use Illuminate\Support\Str;
 
-class PageProperties implements FieldInterface
+class PageProperties implements Field
 {
     /**
      * @var array

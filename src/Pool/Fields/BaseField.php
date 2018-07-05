@@ -2,9 +2,10 @@
 
 namespace FosterMadeCo\Pool\Fields;
 
+use FosterMadeCo\Pool\Contracts\Field;
 use Illuminate\Support\Str;
 
-class BaseField implements FieldInterface
+class BaseField implements Field
 {
     /**
      * @var array

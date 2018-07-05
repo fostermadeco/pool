@@ -2,13 +2,14 @@
 
 namespace FosterMadeCo\Pool\Fields;
 
+use FosterMadeCo\Pool\Contracts\Field;
 use FosterMadeCo\Pool\Exceptions\ArrayKeyRequiredException;
 use FosterMadeCo\Pool\Exceptions\FieldInvalidException;
 use FosterMadeCo\Pool\Exceptions\FieldNotAFloatOrIntegerException;
 use FosterMadeCo\Pool\Exceptions\FieldNotAStringException;
 use Illuminate\Support\Str;
 
-class TrackProperties implements FieldInterface
+class TrackProperties implements Field
 {
     /**
      * @var array

@@ -4,6 +4,7 @@ namespace FosterMadeCo\Pool\Fields;
 
 use DateTime;
 use DateTimeInterface;
+use FosterMadeCo\Pool\Contracts\Field;
 use FosterMadeCo\Pool\Exceptions\ArrayKeyRequiredException;
 use FosterMadeCo\Pool\Exceptions\FieldInvalidException;
 use FosterMadeCo\Pool\Exceptions\FieldNotADateException;
@@ -16,7 +17,7 @@ use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Contracts\Validation\Factory;
 use Illuminate\Support\Str;
 
-class IdentityTraits implements FieldInterface
+class IdentityTraits implements Field
 {
     /**
      * @var array

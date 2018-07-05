@@ -2,10 +2,11 @@
 
 namespace FosterMadeCo\Pool\Fields;
 
+use FosterMadeCo\Pool\Contracts\Field;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Support\Str;
 
-class UserId implements FieldInterface
+class UserId implements Field
 {
     /**
      * *waves hand* "You don't need to see his identification"
