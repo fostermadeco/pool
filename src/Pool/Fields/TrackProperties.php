@@ -8,7 +8,7 @@ use FosterMadeCo\Pool\Exceptions\FieldNotAFloatOrIntegerException;
 use FosterMadeCo\Pool\Exceptions\FieldNotAStringException;
 use Illuminate\Support\Str;
 
-class TrackProperties implements Field
+class TrackProperties implements FieldInterface
 {
     /**
      * @var array

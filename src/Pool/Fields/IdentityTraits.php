@@ -16,7 +16,7 @@ use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Contracts\Validation\Factory;
 use Illuminate\Support\Str;
 
-class IdentityTraits implements Field
+class IdentityTraits implements FieldInterface
 {
     /**
      * @var array

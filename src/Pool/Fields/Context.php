@@ -2,7 +2,7 @@
 
 namespace FosterMadeCo\Pool\Fields;
 
-class Context implements Field
+class Context implements FieldInterface
 {
     /**
      * @return array

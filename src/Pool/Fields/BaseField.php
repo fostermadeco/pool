@@ -4,7 +4,7 @@ namespace FosterMadeCo\Pool\Fields;
 
 use Illuminate\Support\Str;
 
-class BaseField implements Field
+class BaseField implements FieldInterface
 {
     /**
      * @var array

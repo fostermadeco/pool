@@ -5,7 +5,7 @@ namespace FosterMadeCo\Pool\Fields;
 use FosterMadeCo\Pool\Exceptions\ArrayKeyRequiredException;
 use Illuminate\Support\Str;
 
-class ScreenProperties implements Field
+class ScreenProperties implements FieldInterface
 {
     /**
      * @var array

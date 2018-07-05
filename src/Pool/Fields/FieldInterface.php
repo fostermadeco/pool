@@ -2,7 +2,7 @@
 
 namespace FosterMadeCo\Pool\Fields;
 
-interface Field
+interface FieldInterface
 {
     public function toArray();
 }

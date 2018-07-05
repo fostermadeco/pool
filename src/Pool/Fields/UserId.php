@@ -5,7 +5,7 @@ namespace FosterMadeCo\Pool\Fields;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Support\Str;
 
-class UserId
+class UserId implements FieldInterface
 {
     /**
      * *waves hand* "You don't need to see his identification"

@@ -10,7 +10,7 @@ use FosterMadeCo\Pool\Exceptions\FieldNotAUrlException;
 use Illuminate\Contracts\Validation\Factory;
 use Illuminate\Support\Str;
 
-class PageProperties implements Field
+class PageProperties implements FieldInterface
 {
     /**
      * @var array

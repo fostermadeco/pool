@@ -4,7 +4,6 @@ namespace FosterMadeCo\Pool\Fields;
 
 use DateTime;
 use DateTimeInterface;
-use FosterMadeCo\Pool\Exceptions\ArrayKeyRequiredException;
 use FosterMadeCo\Pool\Exceptions\FieldInvalidException;
 use FosterMadeCo\Pool\Exceptions\FieldNotADateException;
 use FosterMadeCo\Pool\Exceptions\FieldNotAnEmailException;
@@ -15,7 +14,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Contracts\Validation\Factory;
 use Illuminate\Support\Str;
 
-class GroupTraits
+class GroupTraits implements FieldInterface
 {
     /**
      * @var array
@@ -93,7 +92,7 @@ class GroupTraits
     }
 
     /**
-     * @param \Illuminate\Database\Eloquent\Model $model
+     * @param \Illuminate\Database\Eloquent\Model $group
      * @return \FosterMadeCo\Pool\Fields\GroupTraits
      * @throws \FosterMadeCo\Pool\Exceptions\PoolException
      */
