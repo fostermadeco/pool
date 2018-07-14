@@ -4,30 +4,20 @@ namespace FosterMadeCo\Pool\Fields;
 
 use DateTime;
 use DateTimeInterface;
-use FosterMadeCo\Pool\Contracts\Field;
-use FosterMadeCo\Pool\Exceptions\ArrayKeyRequiredException;
 use FosterMadeCo\Pool\Exceptions\FieldInvalidException;
 use FosterMadeCo\Pool\Exceptions\FieldNotADateException;
 use FosterMadeCo\Pool\Exceptions\FieldNotAnEmailException;
 use FosterMadeCo\Pool\Exceptions\FieldNotAnIntegerException;
-use FosterMadeCo\Pool\Exceptions\FieldNotAnObjectOrArrayException;
 use FosterMadeCo\Pool\Exceptions\FieldNotAStringException;
 use FosterMadeCo\Pool\Exceptions\FieldNotAUrlException;
-use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Contracts\Validation\Factory;
-use Illuminate\Support\Str;
 
-class IdentityTraits implements Field
+class IdentityTraits extends BaseField
 {
-    /**
+    /*
      * @var array
      */
-    public $traits = [];
-
-    /**
-     * @var array
-     */
-    public static $reservedTraits = [
+    public static $validatedFields = [
         'address', 'age', 'avatar', 'birthday', 'company', 'created_at', 'description', 'email',
         'first_name', 'gender', 'id', 'last_name', 'name', 'phone', 'title', 'username', 'website',
     ];
@@ -48,119 +38,12 @@ class IdentityTraits implements Field
     }
 
     /**
-     * @param string $name
-     * @return mixed
-     */
-    public function __get($name)
-    {
-        if (in_array(Str::snake($name), $this->traits)) {
-            return $this->traits[Str::snake($name)];
-        }
-
-        return $this->$name;
-    }
-
-    /**
-     * @param string $name
-     * @param mixed $value
-     * @throws \FosterMadeCo\Pool\Exceptions\PoolException
-     */
-    public function __set($name, $value)
-    {
-        if ($this->isReservedTrait($name)) {
-            $method = 'set' . Str::studly($name);
-
-            $this->{$method}($value);
-        } else {
-            $this->traits[$name] = $value;
-        }
-    }
-
-    /**
-     * @return array
-     */
-    public function toArray()
-    {
-        $traits = [];
-
-        foreach ($this->traits as $attribute => $value) {
-            if (is_object($value)) {
-                $traits[$attribute] = $value->toArray();
-            } else {
-                $traits[$attribute] = $value;
-            }
-        }
-
-        return $traits;
-    }
-
-    /**
-     * @param array $array
-     * @return \FosterMadeCo\Pool\Fields\IdentityTraits
-     * @throws \FosterMadeCo\Pool\Exceptions\ArrayKeyRequiredException
-     */
-    public static function createFromArray(array $array)
-    {
-        $traits = app()->make(IdentityTraits::class);
-
-        foreach ($array as $attribute => $value) {
-            if (is_int($attribute)) {
-                // The value needs to be a string
-                if (!is_string($value)) {
-                    throw new ArrayKeyRequiredException();
-                }
-
-                $traits->$value = $value;
-            } else {
-                $traits->$attribute = $value;
-            }
-        }
-
-        return $traits;
-    }
-
-    /**
-     * @param \Illuminate\Contracts\Auth\Authenticatable $model
-     * @return \FosterMadeCo\Pool\Fields\IdentityTraits
-     * @throws \FosterMadeCo\Pool\Exceptions\PoolException
-     */
-    public static function createFromModel(Authenticatable $model)
-    {
-        $traits = app()->make(IdentityTraits::class);
-
-        foreach ($model->traits as $attribute => $value) {
-            if (is_int($attribute)) {
-                $traits->$value = $model->$value;
-            } else {
-                $traits->$attribute = $model->$value;
-            }
-        }
-
-        return $traits;
-    }
-
-    /**
-     * @param string $name
-     * @return bool
-     */
-    protected function isReservedTrait($name)
-    {
-        return in_array(Str::snake($name), self::$reservedTraits);
-    }
-
-    /**
      * @param object|array $value
-     * @throws \FosterMadeCo\Pool\Exceptions\FieldNotAnObjectOrArrayException
+     * @throws \FosterMadeCo\Pool\Exceptions\PoolException
      */
     protected function setAddress($value)
     {
-        if (gettype($value) === 'array') {
-            $this->traits['address'] = Address::createFromArray($value);
-        } elseif (gettype($value) === 'object') {
-            $this->traits['address'] = Address::createFromObject($value);
-        } else {
-            throw new FieldNotAnObjectOrArrayException('address');
-        }
+        $this->fields['address'] = Address::create($value);
     }
 
     /**
@@ -173,7 +56,7 @@ class IdentityTraits implements Field
             throw new FieldNotAnIntegerException('age');
         }
 
-        $this->traits['age'] = $value;
+        $this->fields['age'] = $value;
     }
 
     /**
@@ -188,7 +71,7 @@ class IdentityTraits implements Field
             throw new FieldNotAUrlException('avatar');
         }
 
-        $this->traits['avatar'] = $value;
+        $this->fields['avatar'] = $value;
     }
 
     /**
@@ -211,22 +94,16 @@ class IdentityTraits implements Field
             $value = $value->format(DateTime::ATOM);
         }
 
-        $this->traits['birthday'] = $value;
+        $this->fields['birthday'] = $value;
     }
 
     /**
      * @param object|array $value
-     * @throws \FosterMadeCo\Pool\Exceptions\FieldNotAnObjectOrArrayException
+     * @throws \FosterMadeCo\Pool\Exceptions\PoolException
      */
     protected function setCompany($value)
     {
-        if (gettype($value) === 'array') {
-            $this->traits['company'] = Company::createFromArray($value);
-        } elseif (gettype($value) === 'object') {
-            $this->traits['company'] = Company::createFromObject($value);
-        } else {
-            throw new FieldNotAnObjectOrArrayException('company');
-        }
+        $this->fields['company'] = Company::create($value);
     }
 
     /**
@@ -249,7 +126,7 @@ class IdentityTraits implements Field
             $value = $value->format(DateTime::ATOM);
         }
 
-        $this->traits['created_at'] = $value;
+        $this->fields['created_at'] = $value;
     }
 
     /**
@@ -262,7 +139,7 @@ class IdentityTraits implements Field
             throw new FieldNotAStringException('description');
         }
 
-        $this->traits['description'] = $value;
+        $this->fields['description'] = $value;
     }
 
     /**
@@ -274,11 +151,10 @@ class IdentityTraits implements Field
         $validation = $this->validator->make([$value], ['email']);
 
         if ($validation->fails()) {
-            dump($value);
             throw new FieldNotAnEmailException('email');
         }
 
-        $this->traits['email'] = $value;
+        $this->fields['email'] = $value;
     }
 
     /**
@@ -291,7 +167,7 @@ class IdentityTraits implements Field
             throw new FieldNotAStringException('first name');
         }
 
-        $this->traits['first_name'] = $value;
+        $this->fields['first_name'] = $value;
     }
 
     /**
@@ -304,7 +180,7 @@ class IdentityTraits implements Field
             throw new FieldNotAStringException('gender');
         }
 
-        $this->traits['gender'] = $value;
+        $this->fields['gender'] = $value;
     }
 
     /**
@@ -317,7 +193,7 @@ class IdentityTraits implements Field
             throw new FieldInvalidException('The id field either needs to be a string or integer.');
         }
 
-        $this->traits['id'] = $value;
+        $this->fields['id'] = $value;
     }
 
     /**
@@ -330,7 +206,7 @@ class IdentityTraits implements Field
             throw new FieldNotAStringException('last name');
         }
 
-        $this->traits['last_name'] = $value;
+        $this->fields['last_name'] = $value;
     }
 
     /**
@@ -343,7 +219,7 @@ class IdentityTraits implements Field
             throw new FieldNotAStringException('name');
         }
 
-        $this->traits['name'] = $value;
+        $this->fields['name'] = $value;
     }
 
     /**
@@ -356,7 +232,7 @@ class IdentityTraits implements Field
             throw new FieldNotAStringException('phone');
         }
 
-        $this->traits['phone'] = $value;
+        $this->fields['phone'] = $value;
     }
 
     /**
@@ -369,7 +245,7 @@ class IdentityTraits implements Field
             throw new FieldNotAStringException('title');
         }
 
-        $this->traits['title'] = $value;
+        $this->fields['title'] = $value;
     }
 
     /**
@@ -382,7 +258,7 @@ class IdentityTraits implements Field
             throw new FieldNotAStringException('username');
         }
 
-        $this->traits['username'] = $value;
+        $this->fields['username'] = $value;
     }
 
     /**
@@ -397,6 +273,6 @@ class IdentityTraits implements Field
             throw new FieldNotAUrlException('website');
         }
 
-        $this->traits['website'] = $value;
+        $this->fields['website'] = $value;
     }
 }

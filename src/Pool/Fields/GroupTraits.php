@@ -4,28 +4,20 @@ namespace FosterMadeCo\Pool\Fields;
 
 use DateTime;
 use DateTimeInterface;
-use FosterMadeCo\Pool\Contracts\Field;
 use FosterMadeCo\Pool\Exceptions\FieldInvalidException;
 use FosterMadeCo\Pool\Exceptions\FieldNotADateException;
 use FosterMadeCo\Pool\Exceptions\FieldNotAnEmailException;
-use FosterMadeCo\Pool\Exceptions\FieldNotAnObjectOrArrayException;
 use FosterMadeCo\Pool\Exceptions\FieldNotAStringException;
 use FosterMadeCo\Pool\Exceptions\FieldNotAUrlException;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Contracts\Validation\Factory;
 use Illuminate\Support\Str;
 
-class GroupTraits implements Field
+class GroupTraits extends BaseField
 {
     /**
      * @var array
      */
-    public $traits = [];
-
-    /**
-     * @var array
-     */
-    public static $reservedTraits = [
+    public static $validatedFields = [
         'address', 'avatar', 'created_at', 'description', 'email', 'employees',
         'id', 'industry', 'name', 'plan', 'phone', 'website',
     ];
@@ -46,94 +38,12 @@ class GroupTraits implements Field
     }
 
     /**
-     * @param string $name
-     * @return mixed
-     */
-    public function __get($name)
-    {
-        if (in_array(Str::snake($name), $this->traits)) {
-            return $this->traits[Str::snake($name)];
-        }
-
-        return $this->$name;
-    }
-
-    /**
-     * @param string $name
-     * @param mixed $value
-     * @throws \FosterMadeCo\Pool\Exceptions\PoolException
-     */
-    public function __set($name, $value)
-    {
-        if ($this->isReservedTrait($name)) {
-            $method = 'set' . Str::studly($name);
-
-            $this->{$method}($value);
-        } else {
-            $this->traits[$name] = $value;
-        }
-    }
-
-    /**
-     * @return array
-     */
-    public function toArray()
-    {
-        $traits = [];
-
-        foreach ($this->traits as $attribute => $value) {
-            if (is_object($value)) {
-                $traits[$attribute] = $value->toArray();
-            } else {
-                $traits[$attribute] = $value;
-            }
-        }
-
-        return $traits;
-    }
-
-    /**
-     * @param \Illuminate\Database\Eloquent\Model $group
-     * @return \FosterMadeCo\Pool\Fields\GroupTraits
-     * @throws \FosterMadeCo\Pool\Exceptions\PoolException
-     */
-    public static function create(Model $group)
-    {
-        $traits = app()->make(self::class);
-
-        foreach ($group->traits as $attribute => $value) {
-            if (is_int($attribute)) {
-                $traits->$value = $group->$value;
-            } else {
-                $traits->$attribute = $group->$value;
-            }
-        }
-
-        return $traits;
-    }
-
-    /**
-     * @param string $name
-     * @return bool
-     */
-    protected function isReservedTrait($name)
-    {
-        return in_array(Str::snake($name), self::$reservedTraits);
-    }
-
-    /**
      * @param object|array $value
-     * @throws \FosterMadeCo\Pool\Exceptions\FieldNotAnObjectOrArrayException
+     * @throws \FosterMadeCo\Pool\Exceptions\PoolException
      */
     protected function setAddress($value)
     {
-        if (gettype($value) === 'array') {
-            $this->traits['address'] = Address::createFromArray($value);
-        } elseif (gettype($value) === 'object') {
-            $this->traits['address'] = Address::createFromObject($value);
-        } else {
-            throw new FieldNotAnObjectOrArrayException('address');
-        }
+        $this->fields['address'] = Address::create($value);
     }
 
     /**
@@ -148,7 +58,7 @@ class GroupTraits implements Field
             throw new FieldNotAUrlException('avatar');
         }
 
-        $this->traits['avatar'] = $value;
+        $this->fields['avatar'] = $value;
     }
 
     /**
@@ -171,7 +81,7 @@ class GroupTraits implements Field
             $value = $value->format(DateTime::ATOM);
         }
 
-        $this->traits['created_at'] = $value;
+        $this->fields['created_at'] = $value;
     }
 
     /**
@@ -184,7 +94,7 @@ class GroupTraits implements Field
             throw new FieldNotAStringException('description');
         }
 
-        $this->traits['description'] = $value;
+        $this->fields['description'] = $value;
     }
 
     /**
@@ -199,7 +109,7 @@ class GroupTraits implements Field
             throw new FieldNotAnEmailException('email');
         }
 
-        $this->traits['email'] = $value;
+        $this->fields['email'] = $value;
     }
 
     /**
@@ -212,7 +122,7 @@ class GroupTraits implements Field
             throw new FieldInvalidException('The employees field needs to be a whole number.');
         }
 
-        $this->traits['employees'] = $value;
+        $this->fields['employees'] = $value;
     }
 
     /**
@@ -225,7 +135,7 @@ class GroupTraits implements Field
             throw new FieldInvalidException('The id field either needs to be a string or integer.');
         }
 
-        $this->traits['id'] = $value;
+        $this->fields['id'] = $value;
     }
 
     /**
@@ -238,7 +148,7 @@ class GroupTraits implements Field
             throw new FieldNotAStringException('industry');
         }
 
-        $this->traits['industry'] = $value;
+        $this->fields['industry'] = $value;
     }
 
     /**
@@ -251,7 +161,7 @@ class GroupTraits implements Field
             throw new FieldNotAStringException('name');
         }
 
-        $this->traits['name'] = $value;
+        $this->fields['name'] = $value;
     }
 
     /**
@@ -264,7 +174,7 @@ class GroupTraits implements Field
             throw new FieldNotAStringException('plan');
         }
 
-        $this->traits['plan'] = $value;
+        $this->fields['plan'] = $value;
     }
 
     /**
@@ -277,7 +187,7 @@ class GroupTraits implements Field
             throw new FieldNotAStringException('phone');
         }
 
-        $this->traits['phone'] = $value;
+        $this->fields['phone'] = $value;
     }
 
     /**
@@ -292,6 +202,6 @@ class GroupTraits implements Field
             throw new FieldNotAUrlException('website');
         }
 
-        $this->traits['website'] = $value;
+        $this->fields['website'] = $value;
     }
 }

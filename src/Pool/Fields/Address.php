@@ -7,9 +7,16 @@ use FosterMadeCo\Pool\Exceptions\FieldNotAStringException;
 class Address extends BaseField
 {
     /**
+     * Restrict the fields that can be added to the ones that are validated.
+     *
+     * @var bool
+     */
+    public $restrictFields = true;
+
+    /**
      * @var array
      */
-    public static $allowedFields = [
+    public $validatedFields = [
         'city', 'country', 'postal_code', 'state', 'street',
     ];
 

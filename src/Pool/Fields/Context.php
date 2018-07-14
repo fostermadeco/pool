@@ -2,15 +2,6 @@
 
 namespace FosterMadeCo\Pool\Fields;
 
-use FosterMadeCo\Pool\Contracts\Field;
-
-class Context implements Field
+class Context extends BaseField
 {
-    /**
-     * @return array
-     */
-    public function toArray()
-    {
-        return [];
-    }
 }

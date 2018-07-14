@@ -9,9 +9,16 @@ use FosterMadeCo\Pool\Exceptions\FieldNotAStringException;
 class Company extends BaseField
 {
     /**
+     * Restrict the fields that can be added to the ones that are validated.
+     *
+     * @var bool
+     */
+    public $restrictFields = true;
+
+    /**
      * @var array
      */
-    public static $allowedFields = [
+    public $validatedFields = [
         'employee_count', 'id', 'industry', 'name', 'plan',
     ];
 
