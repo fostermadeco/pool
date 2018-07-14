@@ -14,8 +14,8 @@ use Illuminate\Contracts\Validation\Factory;
 
 class IdentityTraits extends BaseField
 {
-    /*
-     * @var array
+    /**
+     * {@inheritdoc}
      */
     public static $validatedFields = [
         'address', 'age', 'avatar', 'birthday', 'company', 'created_at', 'description', 'email',
@@ -34,6 +34,8 @@ class IdentityTraits extends BaseField
      */
     public function __construct(Factory $validator)
     {
+        parent::__construct();
+
         $this->validator = $validator;
     }
 

@@ -10,12 +10,11 @@ use FosterMadeCo\Pool\Exceptions\FieldNotAnEmailException;
 use FosterMadeCo\Pool\Exceptions\FieldNotAStringException;
 use FosterMadeCo\Pool\Exceptions\FieldNotAUrlException;
 use Illuminate\Contracts\Validation\Factory;
-use Illuminate\Support\Str;
 
 class GroupTraits extends BaseField
 {
     /**
-     * @var array
+     * {@inheritdoc}
      */
     public static $validatedFields = [
         'address', 'avatar', 'created_at', 'description', 'email', 'employees',
@@ -34,6 +33,8 @@ class GroupTraits extends BaseField
      */
     public function __construct(Factory $validator)
     {
+        parent::__construct();
+
         $this->validator = $validator;
     }
 

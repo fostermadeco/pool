@@ -11,25 +11,49 @@ use Illuminate\Support\Str;
 class BaseField implements Field
 {
     /**
+     * Application configuration for Segment
+     *
+     * @var array
+     */
+    protected $config;
+
+    /**
      * Data points that will be passed in the message
      *
      * @var array
      */
-    public $fields = [];
+    protected $fields = [];
 
     /**
      * Restrict the fields that can be added to the ones that are validated.
      *
      * @var bool
      */
-    public $restrictFields = false;
+    protected $restrictFields = false;
 
     /**
      * Fields that are validated.
      *
      * @var array
      */
-    public $validatedFields = [];
+    protected $validatedFields = [];
+
+    /**
+     * Validate the fields
+     *
+     * @var array
+     */
+    protected $validateFields = true;
+
+    /**
+     * BaseField constructor.
+     */
+    public function __construct()
+    {
+        $this->config = config('segment');
+
+        $this->validateFields = $this->config['validate'];
+    }
 
     /**
      * @param string $name
@@ -52,12 +76,48 @@ class BaseField implements Field
      */
     public function __set($name, $value)
     {
-        if ($this->isValidatedField($name)) {
+        if ($this->validateFields && $this->isValidatedField($name)) {
             $method = 'set' . Str::studly($name);
 
             $this->{$method}($value);
         } else {
             $this->fields[$name] = $value;
+        }
+    }
+
+    /**
+     * Validate the fields when they are set.
+     *
+     * @param boolean $withChildren
+     */
+    public function check($withChildren = true)
+    {
+        $this->validateFields = true;
+
+        if ($withChildren) {
+            foreach ($this->fields as $field) {
+                if ($field instanceof self) {
+                    $field->check($withChildren);
+                }
+            }
+        }
+    }
+
+    /**
+     * Do not validate the fields when they are set.
+     *
+     * @param boolean $withChildren
+     */
+    public function neglect($withChildren = true)
+    {
+        $this->validateFields = false;
+
+        if ($withChildren) {
+            foreach ($this->fields as $field) {
+                if ($field instanceof self) {
+                    $field->neglect($withChildren);
+                }
+            }
         }
     }
 
@@ -73,7 +133,7 @@ class BaseField implements Field
         if ($withChildren) {
             foreach ($this->fields as $field) {
                 if ($field instanceof self) {
-                    $field->restrict();
+                    $field->restrict($withChildren);
                 }
             }
         }
@@ -113,7 +173,7 @@ class BaseField implements Field
         if ($withChildren) {
             foreach ($this->fields as $field) {
                 if ($field instanceof self) {
-                    $field->unrestrict();
+                    $field->unrestrict($withChildren);
                 }
             }
         }

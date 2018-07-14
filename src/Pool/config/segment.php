@@ -68,4 +68,17 @@ return [
     */
 
     'integrations' => [],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Validation
+    |--------------------------------------------------------------------------
+    |
+    | Segment has reserved properties and traits it suggests be set in certain
+    | formats. Setting this value to boolean true will throw exceptions if the
+    | data in the message does not match the suggested format.
+    |
+    */
+
+    'validate' => env('SEGMENT_VALIDATE', true),
 ];
