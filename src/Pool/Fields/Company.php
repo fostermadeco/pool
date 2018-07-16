@@ -13,12 +13,14 @@ class Company extends BaseField
      *
      * @var bool
      */
-    public $restrictFields = true;
+    protected $restrictFields = true;
 
     /**
+     * Fields that are validated.
+     *
      * @var array
      */
-    public $validatedFields = [
+    protected $validatedFields = [
         'employee_count', 'id', 'industry', 'name', 'plan',
     ];
 
@@ -26,7 +28,7 @@ class Company extends BaseField
      * @param int $value
      * @throws \FosterMadeCo\Pool\Exceptions\FieldNotAnIntegerException
      */
-    protected function setEmployeeCount($value)
+    public function setEmployeeCount($value)
     {
         if (!is_int($value)) {
             throw new FieldNotAnIntegerException('employee_count');
@@ -39,7 +41,7 @@ class Company extends BaseField
      * @param int|string $value
      * @throws \FosterMadeCo\Pool\Exceptions\FieldInvalidException
      */
-    protected function setId($value)
+    public function setId($value)
     {
         if (!is_int($value) && !is_string($value)) {
             throw new FieldInvalidException('The id field either needs to be a string or integer.');
@@ -52,7 +54,7 @@ class Company extends BaseField
      * @param string $value
      * @throws \FosterMadeCo\Pool\Exceptions\FieldNotAStringException
      */
-    protected function setIndustry($value)
+    public function setIndustry($value)
     {
         if (!is_string($value)) {
             throw new FieldNotAStringException('industry');
@@ -65,7 +67,7 @@ class Company extends BaseField
      * @param string $value
      * @throws \FosterMadeCo\Pool\Exceptions\FieldNotAStringException
      */
-    protected function setName($value)
+    public function setName($value)
     {
         if (!is_string($value)) {
             throw new FieldNotAStringException('name');
@@ -78,7 +80,7 @@ class Company extends BaseField
      * @param string $value
      * @throws \FosterMadeCo\Pool\Exceptions\FieldNotAStringException
      */
-    protected function setPlan($value)
+    public function setPlan($value)
     {
         if (!is_string($value)) {
             throw new FieldNotAStringException('plan');

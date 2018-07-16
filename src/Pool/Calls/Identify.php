@@ -13,7 +13,7 @@ class Identify extends BaseCall
      *
      * @var \FosterMadeCo\Pool\Fields\IdentityTraits
      */
-    protected $traits;
+    public $traits;
 
     /**
      * Identify constructor.
@@ -27,6 +27,7 @@ class Identify extends BaseCall
 
         $this->setIdentificationKey($model);
         $this->setTraits($model);
+        $this->traits->validate(true, $this->validateFields);
     }
 
     /**

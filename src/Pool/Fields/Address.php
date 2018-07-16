@@ -11,12 +11,14 @@ class Address extends BaseField
      *
      * @var bool
      */
-    public $restrictFields = true;
+    protected $restrictFields = true;
 
     /**
+     * Fields that are validated.
+     *
      * @var array
      */
-    public $validatedFields = [
+    protected $validatedFields = [
         'city', 'country', 'postal_code', 'state', 'street',
     ];
 
@@ -24,7 +26,7 @@ class Address extends BaseField
      * @param string $value
      * @throws \FosterMadeCo\Pool\Exceptions\FieldNotAStringException
      */
-    protected function setCity($value)
+    public function setCity($value)
     {
         if (!is_string($value)) {
             throw new FieldNotAStringException('city');
@@ -37,7 +39,7 @@ class Address extends BaseField
      * @param string $value
      * @throws \FosterMadeCo\Pool\Exceptions\FieldNotAStringException
      */
-    protected function setCountry($value)
+    public function setCountry($value)
     {
         if (!is_string($value)) {
             throw new FieldNotAStringException('country');
@@ -50,7 +52,7 @@ class Address extends BaseField
      * @param string $value
      * @throws \FosterMadeCo\Pool\Exceptions\FieldNotAStringException
      */
-    protected function setPostalCode($value)
+    public function setPostalCode($value)
     {
         if (!is_string($value)) {
             throw new FieldNotAStringException('postal code');
@@ -63,7 +65,7 @@ class Address extends BaseField
      * @param string $value
      * @throws \FosterMadeCo\Pool\Exceptions\FieldNotAStringException
      */
-    protected function setState($value)
+    public function setState($value)
     {
         if (!is_string($value)) {
             throw new FieldNotAStringException('state');
@@ -76,7 +78,7 @@ class Address extends BaseField
      * @param string $value
      * @throws \FosterMadeCo\Pool\Exceptions\FieldNotAStringException
      */
-    protected function setStreet($value)
+    public function setStreet($value)
     {
         if (!is_string($value)) {
             throw new FieldNotAStringException('street');

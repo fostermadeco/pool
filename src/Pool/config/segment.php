@@ -80,5 +80,5 @@ return [
     |
     */
 
-    'validate' => env('SEGMENT_VALIDATE', true),
+    'validate' => env('SEGMENT_VALIDATE', false),
 ];

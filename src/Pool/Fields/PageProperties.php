@@ -11,9 +11,11 @@ use Illuminate\Contracts\Validation\Factory;
 class PageProperties extends BaseField
 {
     /**
+     * Fields that are validated.
+     *
      * @var array
      */
-    public static $validatedFields = [
+    protected $validatedFields = [
         'keywords', 'path', 'referrer', 'search', 'title', 'url',
     ];
 
@@ -36,7 +38,7 @@ class PageProperties extends BaseField
      * @param $value
      * @throws FieldNotAnArrayException
      */
-    protected function setKeywords($value)
+    public function setKeywords($value)
     {
         if (!is_array($value)) {
             throw new FieldNotAnArrayException('keywords');
@@ -54,7 +56,7 @@ class PageProperties extends BaseField
      * @param $value
      * @throws \FosterMadeCo\Pool\Exceptions\FieldNotAStringException
      */
-    protected function setPath($value)
+    public function setPath($value)
     {
         if (!is_string($value)) {
             throw new FieldNotAStringException('path');
@@ -67,7 +69,7 @@ class PageProperties extends BaseField
      * @param $value
      * @throws \FosterMadeCo\Pool\Exceptions\FieldNotAUrlException
      */
-    protected function setReferrer($value)
+    public function setReferrer($value)
     {
         $validation = $this->validator->make([$value], ['url']);
 
@@ -82,7 +84,7 @@ class PageProperties extends BaseField
      * @param $value
      * @throws \FosterMadeCo\Pool\Exceptions\FieldNotAStringException
      */
-    protected function setSearch($value)
+    public function setSearch($value)
     {
         if (!is_string($value)) {
             throw new FieldNotAStringException('search');
@@ -95,7 +97,7 @@ class PageProperties extends BaseField
      * @param $value
      * @throws \FosterMadeCo\Pool\Exceptions\FieldNotAStringException
      */
-    protected function setTitle($value)
+    public function setTitle($value)
     {
         if (!is_string($value)) {
             throw new FieldNotAStringException('title');
@@ -108,7 +110,7 @@ class PageProperties extends BaseField
      * @param $value
      * @throws \FosterMadeCo\Pool\Exceptions\FieldNotAUrlException
      */
-    protected function setUrl($value)
+    public function setUrl($value)
     {
         $validation = $this->validator->make([$value], ['url']);
 

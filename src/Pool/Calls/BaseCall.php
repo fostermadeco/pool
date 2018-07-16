@@ -13,32 +13,44 @@ class BaseCall
      *
      * @var array
      */
-    protected $config;
+    public $config;
 
     /**
      * The context of the call
      *
      * @var \FosterMadeCo\Pool\Fields\Context
      */
-    protected $context;
+    public $context;
 
     /**
      * How Segment will identify the user
      *
      * @var \FosterMadeCo\Pool\Fields\UserId
      */
-    protected $identificationKey;
+    public $identificationKey;
 
     /**
      * The the destinations the message will be sent to
      *
      * @var array
      */
-    protected $integrations;
+    public $integrations;
 
+    /**
+     * Validate the fields
+     *
+     * @var boolean
+     */
+    public $validateFields;
+
+    /**
+     * BaseCall constructor.
+     */
     public function __construct()
     {
         $this->config = config('segment');
+
+        $this->validateFields = $this->config['validate'];
         $this->setContext();
         $this->setIntegrations($this->config['integrations']);
     }
@@ -52,7 +64,7 @@ class BaseCall
     /**
      * @param \Illuminate\Contracts\Auth\Authenticatable|null $model
      */
-    protected function setIdentificationKey(Authenticatable $model = null)
+    public function setIdentificationKey(Authenticatable $model = null)
     {
         $this->identificationKey = new UserId($model);
     }
@@ -60,7 +72,7 @@ class BaseCall
     /**
      * @param array $integrations
      */
-    protected function setIntegrations(array $integrations)
+    public function setIntegrations(array $integrations)
     {
         $this->integrations = $integrations;
     }

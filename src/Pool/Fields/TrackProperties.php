@@ -9,9 +9,11 @@ use FosterMadeCo\Pool\Exceptions\FieldNotAStringException;
 class TrackProperties extends BaseField
 {
     /**
+     * Fields that are validated.
+     *
      * @var array
      */
-    public $validatedFields = [
+    protected $validatedFields = [
         'currency', 'revenue', 'value',
     ];
 
@@ -20,7 +22,7 @@ class TrackProperties extends BaseField
      * @throws \FosterMadeCo\Pool\Exceptions\FieldNotAStringException
      * @throws \FosterMadeCo\Pool\Exceptions\FieldInvalidException
      */
-    protected function setCurrency($value)
+    public function setCurrency($value)
     {
         if (!is_string($value)) {
             throw new FieldNotAStringException('currency');
@@ -35,7 +37,7 @@ class TrackProperties extends BaseField
      * @param float|int $value
      * @throws \FosterMadeCo\Pool\Exceptions\FieldNotAFloatOrIntegerException
      */
-    protected function setRevenue($value)
+    public function setRevenue($value)
     {
         if (!is_float($value) && !is_int($value)) {
             throw new FieldNotAFloatOrIntegerException('revenue');
@@ -48,7 +50,7 @@ class TrackProperties extends BaseField
      * @param float|int $value
      * @throws \FosterMadeCo\Pool\Exceptions\FieldNotAFloatOrIntegerException
      */
-    protected function setValue($value)
+    public function setValue($value)
     {
         if (!is_float($value) && !is_int($value)) {
             throw new FieldNotAFloatOrIntegerException('value');

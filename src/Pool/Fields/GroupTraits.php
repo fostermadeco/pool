@@ -14,9 +14,11 @@ use Illuminate\Contracts\Validation\Factory;
 class GroupTraits extends BaseField
 {
     /**
-     * {@inheritdoc}
+     * Fields that are validated.
+     *
+     * @var array
      */
-    public static $validatedFields = [
+    protected $validatedFields = [
         'address', 'avatar', 'created_at', 'description', 'email', 'employees',
         'id', 'industry', 'name', 'plan', 'phone', 'website',
     ];
@@ -33,8 +35,6 @@ class GroupTraits extends BaseField
      */
     public function __construct(Factory $validator)
     {
-        parent::__construct();
-
         $this->validator = $validator;
     }
 
@@ -42,7 +42,7 @@ class GroupTraits extends BaseField
      * @param object|array $value
      * @throws \FosterMadeCo\Pool\Exceptions\PoolException
      */
-    protected function setAddress($value)
+    public function setAddress($value)
     {
         $this->fields['address'] = Address::create($value);
     }
@@ -51,7 +51,7 @@ class GroupTraits extends BaseField
      * @param string $value
      * @throws \FosterMadeCo\Pool\Exceptions\FieldNotAUrlException
      */
-    protected function setAvatar($value)
+    public function setAvatar($value)
     {
         $validation = $this->validator->make([$value], ['url']);
 
@@ -66,7 +66,7 @@ class GroupTraits extends BaseField
      * @param \DateTimeInterface|string $value
      * @throws \FosterMadeCo\Pool\Exceptions\FieldNotADateException
      */
-    protected function setCreatedAt($value)
+    public function setCreatedAt($value)
     {
         $validation = $this->validator->make([$value], ['date']);
 
@@ -89,7 +89,7 @@ class GroupTraits extends BaseField
      * @param string $value
      * @throws \FosterMadeCo\Pool\Exceptions\FieldNotAStringException
      */
-    protected function setDescription($value)
+    public function setDescription($value)
     {
         if (!is_string($value)) {
             throw new FieldNotAStringException('description');
@@ -102,7 +102,7 @@ class GroupTraits extends BaseField
      * @param string $value
      * @throws \FosterMadeCo\Pool\Exceptions\FieldNotAnEmailException
      */
-    protected function setEmail($value)
+    public function setEmail($value)
     {
         $validation = $this->validator->make([$value], ['email']);
 
@@ -117,7 +117,7 @@ class GroupTraits extends BaseField
      * @param int|string $value
      * @throws \FosterMadeCo\Pool\Exceptions\FieldInvalidException
      */
-    protected function setEmployees($value)
+    public function setEmployees($value)
     {
         if (!is_numeric($value) && (int)$value == $value) {
             throw new FieldInvalidException('The employees field needs to be a whole number.');
@@ -130,7 +130,7 @@ class GroupTraits extends BaseField
      * @param int|string $value
      * @throws \FosterMadeCo\Pool\Exceptions\FieldInvalidException
      */
-    protected function setId($value)
+    public function setId($value)
     {
         if (!is_int($value) && !is_string($value)) {
             throw new FieldInvalidException('The id field either needs to be a string or integer.');
@@ -143,7 +143,7 @@ class GroupTraits extends BaseField
      * @param string $value
      * @throws \FosterMadeCo\Pool\Exceptions\FieldNotAStringException
      */
-    protected function setIndustry($value)
+    public function setIndustry($value)
     {
         if (!is_string($value)) {
             throw new FieldNotAStringException('industry');
@@ -156,7 +156,7 @@ class GroupTraits extends BaseField
      * @param string $value
      * @throws \FosterMadeCo\Pool\Exceptions\FieldNotAStringException
      */
-    protected function setName($value)
+    public function setName($value)
     {
         if (!is_string($value)) {
             throw new FieldNotAStringException('name');
@@ -169,7 +169,7 @@ class GroupTraits extends BaseField
      * @param string $value
      * @throws \FosterMadeCo\Pool\Exceptions\FieldNotAStringException
      */
-    protected function setPlan($value)
+    public function setPlan($value)
     {
         if (!is_string($value)) {
             throw new FieldNotAStringException('plan');
@@ -182,7 +182,7 @@ class GroupTraits extends BaseField
      * @param string $value
      * @throws \FosterMadeCo\Pool\Exceptions\FieldNotAStringException
      */
-    protected function setPhone($value)
+    public function setPhone($value)
     {
         if (!is_string($value)) {
             throw new FieldNotAStringException('phone');
@@ -195,7 +195,7 @@ class GroupTraits extends BaseField
      * @param string $value
      * @throws \FosterMadeCo\Pool\Exceptions\FieldNotAUrlException
      */
-    protected function setWebsite($value)
+    public function setWebsite($value)
     {
         $validation = $this->validator->make([$value], ['url']);
 

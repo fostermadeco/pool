@@ -11,14 +11,14 @@ class Alias extends BaseCall
     /**
      * @var string|int
      */
-    protected $previousId;
+    public $previousId;
 
     /**
      * Key of Authenticatable model
      *
      * @var \Illuminate\Contracts\Auth\Authenticatable
      */
-    protected $userId;
+    public $userId;
 
     /**
      * Alias constructor.

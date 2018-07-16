@@ -67,6 +67,11 @@ class UserId implements Field
         }
     }
 
+    /**
+     * Return this object's fields as an array
+     *
+     * @return array
+     */
     public function toArray()
     {
         if (isset($this->userId)) {

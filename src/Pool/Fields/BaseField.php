@@ -11,13 +11,6 @@ use Illuminate\Support\Str;
 class BaseField implements Field
 {
     /**
-     * Application configuration for Segment
-     *
-     * @var array
-     */
-    protected $config;
-
-    /**
      * Data points that will be passed in the message
      *
      * @var array
@@ -43,17 +36,7 @@ class BaseField implements Field
      *
      * @var array
      */
-    protected $validateFields = true;
-
-    /**
-     * BaseField constructor.
-     */
-    public function __construct()
-    {
-        $this->config = config('segment');
-
-        $this->validateFields = $this->config['validate'];
-    }
+    protected $validateFields = false;
 
     /**
      * @param string $name
@@ -86,39 +69,13 @@ class BaseField implements Field
     }
 
     /**
-     * Validate the fields when they are set.
-     *
-     * @param boolean $withChildren
-     */
-    public function check($withChildren = true)
-    {
-        $this->validateFields = true;
-
-        if ($withChildren) {
-            foreach ($this->fields as $field) {
-                if ($field instanceof self) {
-                    $field->check($withChildren);
-                }
-            }
-        }
-    }
-
-    /**
-     * Do not validate the fields when they are set.
+     * Shorthand for $this->valdidate($withChildren, false)
      *
      * @param boolean $withChildren
      */
     public function neglect($withChildren = true)
     {
-        $this->validateFields = false;
-
-        if ($withChildren) {
-            foreach ($this->fields as $field) {
-                if ($field instanceof self) {
-                    $field->neglect($withChildren);
-                }
-            }
-        }
+        $this->validate($withChildren, false);
     }
 
     /**
@@ -126,14 +83,14 @@ class BaseField implements Field
      *
      * @param boolean $withChildren
      */
-    public function restrict($withChildren = true)
+    public function restrict($withChildren = true, $setting = true)
     {
-        $this->restrictFields = true;
+        $this->restrictFields = $setting;
 
         if ($withChildren) {
             foreach ($this->fields as $field) {
                 if ($field instanceof self) {
-                    $field->restrict($withChildren);
+                    $field->restrict($withChildren, $setting);
                 }
             }
         }
@@ -162,18 +119,29 @@ class BaseField implements Field
     }
 
     /**
-     * Allow items not in self::validatedFields to be in the array of return fields
+     * Shorthand for $this->restrict($withChildren, false)
      *
      * @param boolean $withChildren
      */
     public function unrestrict($withChildren = true)
     {
-        $this->restrictFields = false;
+        $this->restrict($withChildren, false);
+    }
+
+    /**
+     * Do or do not validate the fields when they are set. There is no try.
+     *
+     * @param boolean $withChildren
+     * @param boolean $setting
+     */
+    public function validate($withChildren = true, $setting = true)
+    {
+        $this->validateFields = $setting;
 
         if ($withChildren) {
             foreach ($this->fields as $field) {
                 if ($field instanceof self) {
-                    $field->unrestrict($withChildren);
+                    $field->validate($withChildren, $setting);
                 }
             }
         }
@@ -185,7 +153,7 @@ class BaseField implements Field
      * @param string $name
      * @return bool
      */
-    protected function isValidatedField($name)
+    public function isValidatedField($name)
     {
         return in_array(Str::snake($name), $this->validatedFields);
     }

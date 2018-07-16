@@ -14,21 +14,21 @@ class Page extends BaseCall
      *
      * @var string
      */
-    protected $category;
+    public $category;
 
     /**
      * The name of the page the user sees
      *
      * @var string
      */
-    protected $name;
+    public $name;
 
     /**
      * Properties of the page
      *
-     * @var array
+     * @var \FosterMadeCo\Pool\Fields\PageProperties
      */
-    protected $properties;
+    public $properties;
 
     /**
      * Page constructor.
@@ -134,6 +134,8 @@ class Page extends BaseCall
 
         if (!is_null($category)) {
             $page->setProperties($properties);
+
+            $page->properties->validate(true, $page->validateFields);
         }
 
         return $page->sendRequest();

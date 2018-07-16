@@ -14,14 +14,14 @@ class Screen extends BaseCall
      *
      * @var string
      */
-    protected $name;
+    public $name;
 
     /**
      * Properties of the screen
      *
-     * @var array
+     * @var \FosterMadeCo\Pool\Fields\ScreenProperties
      */
-    protected $properties;
+    public $properties;
 
     /**
      * Track constructor.
@@ -101,13 +101,15 @@ class Screen extends BaseCall
      */
     public static function call($name, $properties = null, Authenticatable $model = null)
     {
-        $track = new self($name);
-        $track->setIdentificationKey($model);
+        $screen = new self($name);
+        $screen->setIdentificationKey($model);
 
         if (!is_null($properties)) {
-            $track->setProperties($properties);
+            $screen->setProperties($properties);
+
+            $screen->properties->validate(true, $screen->validateFields);
         }
 
-        return $track->sendRequest();
+        return $screen->sendRequest();
     }
 }

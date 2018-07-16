@@ -15,9 +15,11 @@ use Illuminate\Contracts\Validation\Factory;
 class IdentityTraits extends BaseField
 {
     /**
-     * {@inheritdoc}
+     * Fields that are validated.
+     *
+     * @var array
      */
-    public static $validatedFields = [
+    protected $validatedFields = [
         'address', 'age', 'avatar', 'birthday', 'company', 'created_at', 'description', 'email',
         'first_name', 'gender', 'id', 'last_name', 'name', 'phone', 'title', 'username', 'website',
     ];
@@ -34,8 +36,6 @@ class IdentityTraits extends BaseField
      */
     public function __construct(Factory $validator)
     {
-        parent::__construct();
-
         $this->validator = $validator;
     }
 
@@ -43,7 +43,7 @@ class IdentityTraits extends BaseField
      * @param object|array $value
      * @throws \FosterMadeCo\Pool\Exceptions\PoolException
      */
-    protected function setAddress($value)
+    public function setAddress($value)
     {
         $this->fields['address'] = Address::create($value);
     }
@@ -52,7 +52,7 @@ class IdentityTraits extends BaseField
      * @param int $value
      * @throws \FosterMadeCo\Pool\Exceptions\FieldNotAnIntegerException
      */
-    protected function setAge($value)
+    public function setAge($value)
     {
         if (!is_int($value)) {
             throw new FieldNotAnIntegerException('age');
@@ -65,7 +65,7 @@ class IdentityTraits extends BaseField
      * @param string $value
      * @throws \FosterMadeCo\Pool\Exceptions\FieldNotAUrlException
      */
-    protected function setAvatar($value)
+    public function setAvatar($value)
     {
         $validation = $this->validator->make([$value], ['url']);
 
@@ -80,7 +80,7 @@ class IdentityTraits extends BaseField
      * @param \DateTimeInterface|string $value
      * @throws \FosterMadeCo\Pool\Exceptions\FieldNotADateException
      */
-    protected function setBirthday($value)
+    public function setBirthday($value)
     {
         $validation = $this->validator->make([$value], ['date']);
 
@@ -103,7 +103,7 @@ class IdentityTraits extends BaseField
      * @param object|array $value
      * @throws \FosterMadeCo\Pool\Exceptions\PoolException
      */
-    protected function setCompany($value)
+    public function setCompany($value)
     {
         $this->fields['company'] = Company::create($value);
     }
@@ -112,7 +112,7 @@ class IdentityTraits extends BaseField
      * @param \DateTimeInterface|string $value
      * @throws \FosterMadeCo\Pool\Exceptions\FieldNotADateException
      */
-    protected function setCreatedAt($value)
+    public function setCreatedAt($value)
     {
         $validation = $this->validator->make([$value], ['date']);
 
@@ -135,7 +135,7 @@ class IdentityTraits extends BaseField
      * @param string $value
      * @throws \FosterMadeCo\Pool\Exceptions\FieldNotAStringException
      */
-    protected function setDescription($value)
+    public function setDescription($value)
     {
         if (!is_string($value)) {
             throw new FieldNotAStringException('description');
@@ -148,7 +148,7 @@ class IdentityTraits extends BaseField
      * @param string $value
      * @throws \FosterMadeCo\Pool\Exceptions\FieldNotAnEmailException
      */
-    protected function setEmail($value)
+    public function setEmail($value)
     {
         $validation = $this->validator->make([$value], ['email']);
 
@@ -163,7 +163,7 @@ class IdentityTraits extends BaseField
      * @param string $value
      * @throws \FosterMadeCo\Pool\Exceptions\FieldNotAStringException
      */
-    protected function setFirstName($value)
+    public function setFirstName($value)
     {
         if (!is_string($value)) {
             throw new FieldNotAStringException('first name');
@@ -176,7 +176,7 @@ class IdentityTraits extends BaseField
      * @param string $value
      * @throws \FosterMadeCo\Pool\Exceptions\FieldNotAStringException
      */
-    protected function setGender($value)
+    public function setGender($value)
     {
         if (!is_string($value)) {
             throw new FieldNotAStringException('gender');
@@ -189,7 +189,7 @@ class IdentityTraits extends BaseField
      * @param int|string $value
      * @throws \FosterMadeCo\Pool\Exceptions\FieldInvalidException
      */
-    protected function setId($value)
+    public function setId($value)
     {
         if (!is_int($value) && !is_string($value)) {
             throw new FieldInvalidException('The id field either needs to be a string or integer.');
@@ -202,7 +202,7 @@ class IdentityTraits extends BaseField
      * @param string $value
      * @throws \FosterMadeCo\Pool\Exceptions\FieldNotAStringException
      */
-    protected function setLastName($value)
+    public function setLastName($value)
     {
         if (!is_string($value)) {
             throw new FieldNotAStringException('last name');
@@ -215,7 +215,7 @@ class IdentityTraits extends BaseField
      * @param string $value
      * @throws \FosterMadeCo\Pool\Exceptions\FieldNotAStringException
      */
-    protected function setName($value)
+    public function setName($value)
     {
         if (!is_string($value)) {
             throw new FieldNotAStringException('name');
@@ -228,7 +228,7 @@ class IdentityTraits extends BaseField
      * @param string $value
      * @throws \FosterMadeCo\Pool\Exceptions\FieldNotAStringException
      */
-    protected function setPhone($value)
+    public function setPhone($value)
     {
         if (!is_string($value)) {
             throw new FieldNotAStringException('phone');
@@ -241,7 +241,7 @@ class IdentityTraits extends BaseField
      * @param string $value
      * @throws \FosterMadeCo\Pool\Exceptions\FieldNotAStringException
      */
-    protected function setTitle($value)
+    public function setTitle($value)
     {
         if (!is_string($value)) {
             throw new FieldNotAStringException('title');
@@ -254,7 +254,7 @@ class IdentityTraits extends BaseField
      * @param string $value
      * @throws \FosterMadeCo\Pool\Exceptions\FieldNotAStringException
      */
-    protected function setUsername($value)
+    public function setUsername($value)
     {
         if (!is_string($value)) {
             throw new FieldNotAStringException('username');
@@ -267,7 +267,7 @@ class IdentityTraits extends BaseField
      * @param string $value
      * @throws \FosterMadeCo\Pool\Exceptions\FieldNotAUrlException
      */
-    protected function setWebsite($value)
+    public function setWebsite($value)
     {
         $validation = $this->validator->make([$value], ['url']);
 

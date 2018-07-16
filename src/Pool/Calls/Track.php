@@ -14,14 +14,14 @@ class Track extends BaseCall
      *
      * @var string
      */
-    protected $event;
+    public $event;
 
     /**
      * Properties of the event
      *
-     * @var array
+     * @var \FosterMadeCo\Pool\Fields\TrackProperties
      */
-    protected $properties;
+    public $properties;
 
     /**
      * Track constructor.
@@ -106,6 +106,8 @@ class Track extends BaseCall
 
         if (!is_null($properties)) {
             $track->setProperties($properties);
+
+            $track->properties->validate(true, $track->validateFields);
         }
 
         return $track->sendRequest();

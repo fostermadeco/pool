@@ -14,14 +14,14 @@ class Group extends BaseCall
      *
      * @var string|int
      */
-    protected $groupId;
+    public $groupId;
 
     /**
      * Attributes of the user to pass to Segment
      *
      * @var \FosterMadeCo\Pool\Fields\GroupTraits
      */
-    protected $traits;
+    public $traits;
 
     /**
      * Group constructor.
@@ -37,6 +37,7 @@ class Group extends BaseCall
         $this->setIdentificationKey($user);
         $this->setGroupIdentificationKey($group);
         $this->setTraits($group);
+        $this->traits->validate(true, $this->validateFields);
     }
 
     /**
