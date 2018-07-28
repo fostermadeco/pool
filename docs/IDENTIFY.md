@@ -1,7 +1,7 @@
 # Identify
 
 1. [Identifying Authenticated Users](#1-identifying-authenticated-users)
-2. [Identifying Non-Anonymous Users](#2-identifying-non-anonymous-users)
+2. [Identifying Anonymous Users](#2-identifying-anonymous-users)
 3. [Making `identify` Calls In the Application](#3-making-identify-calls-in-the-application)
 4. [Method Descriptions](#4-method-descriptions)
 
@@ -166,7 +166,7 @@ model is updated, then `identify` won't be called automatically. For example,
 if a User's address is stored in the Address relation and the Address relation
 is updated, then a `identify` call will need to be added.
 
-## 2. Identifying Non-Anonymous Users
+## 2. Identifying Anonymous Users
 
 The easiest way to do this is to use `\FosterMadeCo\Pool\Identify::call()` like so:
 
