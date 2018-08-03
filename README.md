@@ -21,12 +21,18 @@ php artisan vendor:publish
 
 Add default destinations to the integrations array in the segment config file, for example:
 
-```
+```php
     'integrations' => [
         'All' => false,
         'Google Analytics' => true,
         'Optimizely' => true,
     ],
+```
+
+Add `SEGMENT_WRITE_KEY` to your `.env` file:
+
+```
+SEGMENT_WRITE_KEY=
 ```
 
 Further setup is detailed in the documentation below.
