@@ -6,4 +6,4 @@ php:
   - 7.2
 
 before_script:
- - composer install --prefer-lowest --no-interaction --prefer-source
+ - composer install --no-interaction --prefer-source
