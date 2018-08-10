@@ -1,5 +1,6 @@
 {
     "name": "fostermadeco/pool",
+    "description": "A Segment package for Laravel",
     "license": "MIT",
     "authors": [
         {
