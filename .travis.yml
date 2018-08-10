@@ -5,5 +5,5 @@ php:
   - 7.1
   - 7.2
 
-env:
-  - COMPOSER_FLAGS="--prefer-lowest"
+before_script:
+ - composer install --prefer-lowest --no-interaction --prefer-source
