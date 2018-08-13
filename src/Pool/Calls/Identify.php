@@ -62,6 +62,7 @@ class Identify extends BaseCall
 
     /**
      * @param \Illuminate\Contracts\Auth\Authenticatable|array $traitSource
+     * @return $this
      * @throws \FosterMadeCo\Pool\Exceptions\PoolException
      */
     public function setTraits($traitSource)
@@ -73,6 +74,8 @@ class Identify extends BaseCall
         } elseif (is_array($traitSource)) {
             $this->traits = IdentityTraits::createFromArray($traitSource);
         }
+
+        return $this;
     }
 
     /**

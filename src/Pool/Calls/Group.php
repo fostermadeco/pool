@@ -74,21 +74,27 @@ class Group extends BaseCall
 
     /**
      * @param \Illuminate\Database\Eloquent\Model $group
+     * @return $this
      */
     public function setGroupIdentificationKey($group)
     {
         $this->groupId = $group->getKey();
+
+        return $this;
     }
 
     /**
      * @param \Illuminate\Database\Eloquent\Model $group
      * @throws \FosterMadeCo\Pool\Exceptions\PoolException
+     * @return $this
      */
     public function setTraits($group)
     {
         if (!empty($group->traits)) {
             $this->traits = GroupTraits::create($group);
         }
+
+        return $this;
     }
 
     /**

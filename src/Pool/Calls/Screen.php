@@ -72,6 +72,7 @@ class Screen extends BaseCall
 
     /**
      * @param string $name
+     * @return $this
      * @throws \FosterMadeCo\Pool\Exceptions\FieldNotAStringException
      */
     public function setName($name)
@@ -81,15 +82,20 @@ class Screen extends BaseCall
         }
 
         $this->name = $name;
+
+        return $this;
     }
 
     /**
      * @param array $properties
+     * @return $this
      * @throws \FosterMadeCo\Pool\Exceptions\PoolException
      */
     public function setProperties($properties)
     {
         $this->properties = ScreenProperties::create($properties);
+
+        return $this;
     }
 
     /**

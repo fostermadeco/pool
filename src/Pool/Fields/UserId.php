@@ -3,6 +3,7 @@
 namespace FosterMadeCo\Pool\Fields;
 
 use FosterMadeCo\Pool\Contracts\Field;
+use Illuminate\Container\Container;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Support\Str;
 
@@ -36,7 +37,7 @@ class UserId implements Field
      */
     public function __construct(Authenticatable $model = null)
     {
-        $this->config = config('segment');
+        $this->config = Container::getInstance()->make('config', ['segment'])->get('segment');
 
         if (!is_null($model)) {
             $this->setUserId($model);
@@ -51,10 +52,13 @@ class UserId implements Field
     public function setAnonymousId()
     {
         $this->anonymousId = Str::uuid()->toString();
+
+        return $this;
     }
 
     /**
      * @param \Illuminate\Contracts\Auth\Authenticatable $model
+     * @return $this
      */
     public function setUserId(Authenticatable $model)
     {
@@ -65,12 +69,15 @@ class UserId implements Field
         } else {
             $this->userId = $model->$attribute;
         }
+
+        return $this;
     }
 
     /**
      * Return this object's fields as an array
      *
      * @return array
+     * @return $this
      */
     public function toArray()
     {

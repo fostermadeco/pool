@@ -26,6 +26,7 @@ class Company extends BaseField
 
     /**
      * @param int $value
+     * @return $this
      * @throws \FosterMadeCo\Pool\Exceptions\FieldNotAnIntegerException
      */
     public function setEmployeeCount($value)
@@ -35,10 +36,13 @@ class Company extends BaseField
         }
 
         $this->fields['employee_count'] = $value;
+
+        return $this;
     }
 
     /**
      * @param int|string $value
+     * @return $this
      * @throws \FosterMadeCo\Pool\Exceptions\FieldInvalidException
      */
     public function setId($value)
@@ -48,10 +52,13 @@ class Company extends BaseField
         }
 
         $this->fields['id'] = $value;
+
+        return $this;
     }
 
     /**
      * @param string $value
+     * @return $this
      * @throws \FosterMadeCo\Pool\Exceptions\FieldNotAStringException
      */
     public function setIndustry($value)
@@ -61,10 +68,13 @@ class Company extends BaseField
         }
 
         $this->fields['industry'] = $value;
+
+        return $this;
     }
 
     /**
      * @param string $value
+     * @return $this
      * @throws \FosterMadeCo\Pool\Exceptions\FieldNotAStringException
      */
     public function setName($value)
@@ -74,10 +84,13 @@ class Company extends BaseField
         }
 
         $this->fields['name'] = $value;
+
+        return $this;
     }
 
     /**
      * @param string $value
+     * @return $this
      * @throws \FosterMadeCo\Pool\Exceptions\FieldNotAStringException
      */
     public function setPlan($value)
@@ -87,5 +100,7 @@ class Company extends BaseField
         }
 
         $this->fields['plan'] = $value;
+
+        return $this;
     }
 }

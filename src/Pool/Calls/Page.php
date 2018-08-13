@@ -78,6 +78,7 @@ class Page extends BaseCall
 
     /**
      * @param string $category
+     * @return $this
      * @throws \FosterMadeCo\Pool\Exceptions\FieldNotAStringException
      */
     public function setCategory($category)
@@ -87,10 +88,13 @@ class Page extends BaseCall
         }
 
         $this->category = $category;
+
+        return $this;
     }
 
     /**
      * @param string $name
+     * @return $this
      * @throws \FosterMadeCo\Pool\Exceptions\FieldNotAStringException
      */
     public function setName($name)
@@ -100,15 +104,20 @@ class Page extends BaseCall
         }
 
         $this->name = $name;
+
+        return $this;
     }
 
     /**
      * @param array $properties
+     * @return $this
      * @throws \FosterMadeCo\Pool\Exceptions\PoolException
      */
     public function setProperties($properties)
     {
         $this->properties = PageProperties::create($properties);
+
+        return $this;
     }
 
     /**

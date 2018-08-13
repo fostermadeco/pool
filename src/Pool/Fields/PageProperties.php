@@ -36,6 +36,7 @@ class PageProperties extends BaseField
 
     /**
      * @param $value
+     * @return $this
      * @throws FieldNotAnArrayException
      */
     public function setKeywords($value)
@@ -50,10 +51,13 @@ class PageProperties extends BaseField
         });
 
         $this->fields['keywords'] = $value;
+
+        return $this;
     }
 
     /**
      * @param $value
+     * @return $this
      * @throws \FosterMadeCo\Pool\Exceptions\FieldNotAStringException
      */
     public function setPath($value)
@@ -63,10 +67,13 @@ class PageProperties extends BaseField
         }
 
         $this->fields['path'] = $value;
+
+        return $this;
     }
 
     /**
      * @param $value
+     * @return $this
      * @throws \FosterMadeCo\Pool\Exceptions\FieldNotAUrlException
      */
     public function setReferrer($value)
@@ -78,10 +85,13 @@ class PageProperties extends BaseField
         }
 
         $this->fields['referrer'] = $value;
+
+        return $this;
     }
 
     /**
      * @param $value
+     * @return $this
      * @throws \FosterMadeCo\Pool\Exceptions\FieldNotAStringException
      */
     public function setSearch($value)
@@ -91,10 +101,13 @@ class PageProperties extends BaseField
         }
 
         $this->fields['search'] = $value;
+
+        return $this;
     }
 
     /**
      * @param $value
+     * @return $this
      * @throws \FosterMadeCo\Pool\Exceptions\FieldNotAStringException
      */
     public function setTitle($value)
@@ -104,10 +117,13 @@ class PageProperties extends BaseField
         }
 
         $this->fields['title'] = $value;
+
+        return $this;
     }
 
     /**
      * @param $value
+     * @return $this
      * @throws \FosterMadeCo\Pool\Exceptions\FieldNotAUrlException
      */
     public function setUrl($value)
@@ -119,5 +135,7 @@ class PageProperties extends BaseField
         }
 
         $this->fields['url'] = $value;
+
+        return $this;
     }
 }

@@ -40,15 +40,19 @@ class GroupTraits extends BaseField
 
     /**
      * @param object|array $value
+     * @return $this
      * @throws \FosterMadeCo\Pool\Exceptions\PoolException
      */
     public function setAddress($value)
     {
         $this->fields['address'] = Address::create($value);
+
+        return $this;
     }
 
     /**
      * @param string $value
+     * @return $this
      * @throws \FosterMadeCo\Pool\Exceptions\FieldNotAUrlException
      */
     public function setAvatar($value)
@@ -60,10 +64,13 @@ class GroupTraits extends BaseField
         }
 
         $this->fields['avatar'] = $value;
+
+        return $this;
     }
 
     /**
      * @param \DateTimeInterface|string $value
+     * @return $this
      * @throws \FosterMadeCo\Pool\Exceptions\FieldNotADateException
      */
     public function setCreatedAt($value)
@@ -83,10 +90,13 @@ class GroupTraits extends BaseField
         }
 
         $this->fields['created_at'] = $value;
+
+        return $this;
     }
 
     /**
      * @param string $value
+     * @return $this
      * @throws \FosterMadeCo\Pool\Exceptions\FieldNotAStringException
      */
     public function setDescription($value)
@@ -96,10 +106,13 @@ class GroupTraits extends BaseField
         }
 
         $this->fields['description'] = $value;
+
+        return $this;
     }
 
     /**
      * @param string $value
+     * @return $this
      * @throws \FosterMadeCo\Pool\Exceptions\FieldNotAnEmailException
      */
     public function setEmail($value)
@@ -111,10 +124,13 @@ class GroupTraits extends BaseField
         }
 
         $this->fields['email'] = $value;
+
+        return $this;
     }
 
     /**
      * @param int|string $value
+     * @return $this
      * @throws \FosterMadeCo\Pool\Exceptions\FieldInvalidException
      */
     public function setEmployees($value)
@@ -124,10 +140,13 @@ class GroupTraits extends BaseField
         }
 
         $this->fields['employees'] = $value;
+
+        return $this;
     }
 
     /**
      * @param int|string $value
+     * @return $this
      * @throws \FosterMadeCo\Pool\Exceptions\FieldInvalidException
      */
     public function setId($value)
@@ -137,10 +156,13 @@ class GroupTraits extends BaseField
         }
 
         $this->fields['id'] = $value;
+
+        return $this;
     }
 
     /**
      * @param string $value
+     * @return $this
      * @throws \FosterMadeCo\Pool\Exceptions\FieldNotAStringException
      */
     public function setIndustry($value)
@@ -150,10 +172,13 @@ class GroupTraits extends BaseField
         }
 
         $this->fields['industry'] = $value;
+
+        return $this;
     }
 
     /**
      * @param string $value
+     * @return $this
      * @throws \FosterMadeCo\Pool\Exceptions\FieldNotAStringException
      */
     public function setName($value)
@@ -163,10 +188,13 @@ class GroupTraits extends BaseField
         }
 
         $this->fields['name'] = $value;
+
+        return $this;
     }
 
     /**
      * @param string $value
+     * @return $this
      * @throws \FosterMadeCo\Pool\Exceptions\FieldNotAStringException
      */
     public function setPlan($value)
@@ -176,10 +204,13 @@ class GroupTraits extends BaseField
         }
 
         $this->fields['plan'] = $value;
+
+        return $this;
     }
 
     /**
      * @param string $value
+     * @return $this
      * @throws \FosterMadeCo\Pool\Exceptions\FieldNotAStringException
      */
     public function setPhone($value)
@@ -189,10 +220,13 @@ class GroupTraits extends BaseField
         }
 
         $this->fields['phone'] = $value;
+
+        return $this;
     }
 
     /**
      * @param string $value
+     * @return $this
      * @throws \FosterMadeCo\Pool\Exceptions\FieldNotAUrlException
      */
     public function setWebsite($value)
@@ -204,5 +238,7 @@ class GroupTraits extends BaseField
         }
 
         $this->fields['website'] = $value;
+
+        return $this;
     }
 }

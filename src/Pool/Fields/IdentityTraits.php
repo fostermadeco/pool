@@ -41,15 +41,19 @@ class IdentityTraits extends BaseField
 
     /**
      * @param object|array $value
+     * @return $this
      * @throws \FosterMadeCo\Pool\Exceptions\PoolException
      */
     public function setAddress($value)
     {
         $this->fields['address'] = Address::create($value);
+
+        return $this;
     }
 
     /**
      * @param int $value
+     * @return $this
      * @throws \FosterMadeCo\Pool\Exceptions\FieldNotAnIntegerException
      */
     public function setAge($value)
@@ -59,10 +63,13 @@ class IdentityTraits extends BaseField
         }
 
         $this->fields['age'] = $value;
+
+        return $this;
     }
 
     /**
      * @param string $value
+     * @return $this
      * @throws \FosterMadeCo\Pool\Exceptions\FieldNotAUrlException
      */
     public function setAvatar($value)
@@ -74,10 +81,13 @@ class IdentityTraits extends BaseField
         }
 
         $this->fields['avatar'] = $value;
+
+        return $this;
     }
 
     /**
      * @param \DateTimeInterface|string $value
+     * @return $this
      * @throws \FosterMadeCo\Pool\Exceptions\FieldNotADateException
      */
     public function setBirthday($value)
@@ -97,19 +107,25 @@ class IdentityTraits extends BaseField
         }
 
         $this->fields['birthday'] = $value;
+
+        return $this;
     }
 
     /**
      * @param object|array $value
+     * @return $this
      * @throws \FosterMadeCo\Pool\Exceptions\PoolException
      */
     public function setCompany($value)
     {
         $this->fields['company'] = Company::create($value);
+
+        return $this;
     }
 
     /**
      * @param \DateTimeInterface|string $value
+     * @return $this
      * @throws \FosterMadeCo\Pool\Exceptions\FieldNotADateException
      */
     public function setCreatedAt($value)
@@ -129,10 +145,13 @@ class IdentityTraits extends BaseField
         }
 
         $this->fields['created_at'] = $value;
+
+        return $this;
     }
 
     /**
      * @param string $value
+     * @return $this
      * @throws \FosterMadeCo\Pool\Exceptions\FieldNotAStringException
      */
     public function setDescription($value)
@@ -142,10 +161,13 @@ class IdentityTraits extends BaseField
         }
 
         $this->fields['description'] = $value;
+
+        return $this;
     }
 
     /**
      * @param string $value
+     * @return $this
      * @throws \FosterMadeCo\Pool\Exceptions\FieldNotAnEmailException
      */
     public function setEmail($value)
@@ -157,10 +179,13 @@ class IdentityTraits extends BaseField
         }
 
         $this->fields['email'] = $value;
+
+        return $this;
     }
 
     /**
      * @param string $value
+     * @return $this
      * @throws \FosterMadeCo\Pool\Exceptions\FieldNotAStringException
      */
     public function setFirstName($value)
@@ -170,10 +195,13 @@ class IdentityTraits extends BaseField
         }
 
         $this->fields['first_name'] = $value;
+
+        return $this;
     }
 
     /**
      * @param string $value
+     * @return $this
      * @throws \FosterMadeCo\Pool\Exceptions\FieldNotAStringException
      */
     public function setGender($value)
@@ -183,10 +211,13 @@ class IdentityTraits extends BaseField
         }
 
         $this->fields['gender'] = $value;
+
+        return $this;
     }
 
     /**
      * @param int|string $value
+     * @return $this
      * @throws \FosterMadeCo\Pool\Exceptions\FieldInvalidException
      */
     public function setId($value)
@@ -196,10 +227,13 @@ class IdentityTraits extends BaseField
         }
 
         $this->fields['id'] = $value;
+
+        return $this;
     }
 
     /**
      * @param string $value
+     * @return $this
      * @throws \FosterMadeCo\Pool\Exceptions\FieldNotAStringException
      */
     public function setLastName($value)
@@ -209,10 +243,13 @@ class IdentityTraits extends BaseField
         }
 
         $this->fields['last_name'] = $value;
+
+        return $this;
     }
 
     /**
      * @param string $value
+     * @return $this
      * @throws \FosterMadeCo\Pool\Exceptions\FieldNotAStringException
      */
     public function setName($value)
@@ -222,10 +259,13 @@ class IdentityTraits extends BaseField
         }
 
         $this->fields['name'] = $value;
+
+        return $this;
     }
 
     /**
      * @param string $value
+     * @return $this
      * @throws \FosterMadeCo\Pool\Exceptions\FieldNotAStringException
      */
     public function setPhone($value)
@@ -235,10 +275,13 @@ class IdentityTraits extends BaseField
         }
 
         $this->fields['phone'] = $value;
+
+        return $this;
     }
 
     /**
      * @param string $value
+     * @return $this
      * @throws \FosterMadeCo\Pool\Exceptions\FieldNotAStringException
      */
     public function setTitle($value)
@@ -248,10 +291,13 @@ class IdentityTraits extends BaseField
         }
 
         $this->fields['title'] = $value;
+
+        return $this;
     }
 
     /**
      * @param string $value
+     * @return $this
      * @throws \FosterMadeCo\Pool\Exceptions\FieldNotAStringException
      */
     public function setUsername($value)
@@ -261,10 +307,13 @@ class IdentityTraits extends BaseField
         }
 
         $this->fields['username'] = $value;
+
+        return $this;
     }
 
     /**
      * @param string $value
+     * @return $this
      * @throws \FosterMadeCo\Pool\Exceptions\FieldNotAUrlException
      */
     public function setWebsite($value)
@@ -276,5 +325,7 @@ class IdentityTraits extends BaseField
         }
 
         $this->fields['website'] = $value;
+
+        return $this;
     }
 }

@@ -72,6 +72,7 @@ class Track extends BaseCall
 
     /**
      * @param string $event
+     * @return $this
      * @throws \FosterMadeCo\Pool\Exceptions\FieldNotAStringException
      */
     public function setEvent($event)
@@ -81,15 +82,20 @@ class Track extends BaseCall
         }
 
         $this->event = $event;
+
+        return $this;
     }
 
     /**
      * @param array $properties
+     * @return $this
      * @throws \FosterMadeCo\Pool\Exceptions\PoolException
      */
     public function setProperties($properties)
     {
         $this->properties = TrackProperties::create($properties);
+
+        return $this;
     }
 
     /**

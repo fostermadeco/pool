@@ -24,6 +24,7 @@ class Address extends BaseField
 
     /**
      * @param string $value
+     * @return $this
      * @throws \FosterMadeCo\Pool\Exceptions\FieldNotAStringException
      */
     public function setCity($value)
@@ -33,10 +34,13 @@ class Address extends BaseField
         }
 
         $this->fields['city'] = $value;
+
+        return $this;
     }
 
     /**
      * @param string $value
+     * @return $this
      * @throws \FosterMadeCo\Pool\Exceptions\FieldNotAStringException
      */
     public function setCountry($value)
@@ -46,10 +50,13 @@ class Address extends BaseField
         }
 
         $this->fields['country'] = $value;
+
+        return $this;
     }
 
     /**
      * @param string $value
+     * @return $this
      * @throws \FosterMadeCo\Pool\Exceptions\FieldNotAStringException
      */
     public function setPostalCode($value)
@@ -59,10 +66,13 @@ class Address extends BaseField
         }
 
         $this->fields['postal_code'] = $value;
+
+        return $this;
     }
 
     /**
      * @param string $value
+     * @return $this
      * @throws \FosterMadeCo\Pool\Exceptions\FieldNotAStringException
      */
     public function setState($value)
@@ -72,10 +82,13 @@ class Address extends BaseField
         }
 
         $this->fields['state'] = $value;
+
+        return $this;
     }
 
     /**
      * @param string $value
+     * @return $this
      * @throws \FosterMadeCo\Pool\Exceptions\FieldNotAStringException
      */
     public function setStreet($value)
@@ -85,5 +98,7 @@ class Address extends BaseField
         }
 
         $this->fields['street'] = $value;
+
+        return $this;
     }
 }

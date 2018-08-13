@@ -5,6 +5,7 @@ namespace FosterMadeCo\Pool\Fields;
 use FosterMadeCo\Pool\Contracts\Field;
 use FosterMadeCo\Pool\Exceptions\ArrayKeyRequiredException;
 use FosterMadeCo\Pool\Exceptions\FieldInvalidException;
+use Illuminate\Container\Container;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
@@ -56,6 +57,7 @@ class BaseField implements Field
      *
      * @param string $name
      * @param mixed $value
+     * @return $this
      */
     public function __set($name, $value)
     {
@@ -66,22 +68,28 @@ class BaseField implements Field
         } else {
             $this->fields[$name] = $value;
         }
+
+        return $this;
     }
 
     /**
      * Shorthand for $this->valdidate($withChildren, false)
      *
      * @param boolean $withChildren
+     * @return $this
      */
     public function neglect($withChildren = true)
     {
         $this->validate($withChildren, false);
+
+        return $this;
     }
 
     /**
      * Prevent items not in self::validatedFields from being in the array of return fields
      *
      * @param boolean $withChildren
+     * @return $this
      */
     public function restrict($withChildren = true, $setting = true)
     {
@@ -94,6 +102,8 @@ class BaseField implements Field
                 }
             }
         }
+
+        return $this;
     }
 
     /**
@@ -122,10 +132,13 @@ class BaseField implements Field
      * Shorthand for $this->restrict($withChildren, false)
      *
      * @param boolean $withChildren
+     * @return $this
      */
     public function unrestrict($withChildren = true)
     {
         $this->restrict($withChildren, false);
+
+        return $this;
     }
 
     /**
@@ -133,6 +146,7 @@ class BaseField implements Field
      *
      * @param boolean $withChildren
      * @param boolean $setting
+     * @return $this
      */
     public function validate($withChildren = true, $setting = true)
     {
@@ -145,6 +159,8 @@ class BaseField implements Field
                 }
             }
         }
+
+        return $this;
     }
 
     /**
@@ -185,7 +201,7 @@ class BaseField implements Field
      */
     public static function createFromArray(array $array)
     {
-        $field = app()->make(static::class);
+        $field = Container::getInstance()->make(static::class);
 
         foreach ($array as $attribute => $value) {
             if (is_int($attribute)) {
@@ -211,7 +227,7 @@ class BaseField implements Field
      */
     public static function createFromModel(Model $model)
     {
-        $field = app()->make(self::class);
+        $field = Container::getInstance()->make(static::class);
 
         $fieldProperties = isset($model->traits) ? $model->traits
             : isset($model->segmentProperties) ? $model->segmentProperties : null;

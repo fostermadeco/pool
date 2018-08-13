@@ -19,6 +19,7 @@ class TrackProperties extends BaseField
 
     /**
      * @param string $value
+     * @return $this
      * @throws \FosterMadeCo\Pool\Exceptions\FieldNotAStringException
      * @throws \FosterMadeCo\Pool\Exceptions\FieldInvalidException
      */
@@ -31,10 +32,13 @@ class TrackProperties extends BaseField
         }
 
         $this->fields['currency'] = $value;
+
+        return $this;
     }
 
     /**
      * @param float|int $value
+     * @return $this
      * @throws \FosterMadeCo\Pool\Exceptions\FieldNotAFloatOrIntegerException
      */
     public function setRevenue($value)
@@ -44,10 +48,13 @@ class TrackProperties extends BaseField
         }
 
         $this->fields['revenue'] = $value;
+
+        return $this;
     }
 
     /**
      * @param float|int $value
+     * @return $this
      * @throws \FosterMadeCo\Pool\Exceptions\FieldNotAFloatOrIntegerException
      */
     public function setValue($value)
@@ -57,5 +64,7 @@ class TrackProperties extends BaseField
         }
 
         $this->fields['value'] = $value;
+
+        return $this;
     }
 }

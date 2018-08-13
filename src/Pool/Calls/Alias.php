@@ -36,6 +36,7 @@ class Alias extends BaseCall
 
     /**
      * @param $value
+     * @return $this
      * @throws \FosterMadeCo\Pool\Exceptions\FieldInvalidException
      */
     public function setPreviousId($value)
@@ -45,6 +46,8 @@ class Alias extends BaseCall
         }
 
         $this->previousId = $value;
+
+        return $this;
     }
 
     /**
