@@ -65,7 +65,7 @@ class Admin extends Authenticatable
         return self::TYPE;
     }
 
-    public function getAddressAttribute()
+    public function getSegmentAddressAttribute()
     {
         return [
             "street" => $this->attributes["address"],
@@ -84,11 +84,11 @@ Will yield:
     [
         "userId" => ...
         "traits" => [
-            "first_name" => "Taylor",
-            "last_name" => "Otwell",
+            "first_name" => "Peter",
+            "last_name" => "Pevensie",
             "user_type" => "Administrator",
             "address" => [
-                "street" => "200 Laravel Ln",
+                "street" => "1 King St",
                 "city" => "Cair Paravel",
                 "state" => "Narnia",
                 "postal_code" => null,

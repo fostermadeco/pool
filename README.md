@@ -29,7 +29,8 @@ Add default destinations to the integrations array in the segment config file, f
     ],
 ```
 
-Add `SEGMENT_WRITE_KEY` to your `.env` file:
+Add `SEGMENT_WRITE_KEY` to your `.env` file and assign it the value of the write key Segment
+provides for your source:
 
 ```
 SEGMENT_WRITE_KEY=
