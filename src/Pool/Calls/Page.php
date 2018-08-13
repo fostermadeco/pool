@@ -130,6 +130,19 @@ class Page extends BaseCall
      */
     public static function call($name = null, $category = null, $properties = null, Authenticatable $model = null)
     {
+        return self::make($name, $category, $properties, $model)->sendRequest();
+    }
+
+    /**
+     * @param string|null $name
+     * @param string|null $category
+     * @param array|null $properties
+     * @param \Illuminate\Contracts\Auth\Authenticatable|null $model
+     * @return \FosterMadeCo\Pool\Calls\Page
+     * @throws \FosterMadeCo\Pool\Exceptions\PoolException
+     */
+    public static function make($name = null, $category = null, $properties = null, Authenticatable $model = null)
+    {
         $page = new self();
         $page->setIdentificationKey($model);
 
@@ -147,6 +160,6 @@ class Page extends BaseCall
             $page->properties->validate(true, $page->validateFields);
         }
 
-        return $page->sendRequest();
+        return $page;
     }
 }

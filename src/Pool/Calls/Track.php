@@ -107,6 +107,18 @@ class Track extends BaseCall
      */
     public static function call($event, $properties = null, Authenticatable $model = null)
     {
+        return self::make($event, $properties, $model)->sendRequest();
+    }
+
+    /**
+     * @param string $event
+     * @param array|null $properties
+     * @param \Illuminate\Contracts\Auth\Authenticatable|null $model
+     * @return \FosterMadeCo\Pool\Calls\Track
+     * @throws \FosterMadeCo\Pool\Exceptions\PoolException
+     */
+    public static function make($event, $properties = null, Authenticatable $model = null)
+    {
         $track = new self($event);
         $track->setIdentificationKey($model);
 
@@ -116,6 +128,6 @@ class Track extends BaseCall
             $track->properties->validate(true, $track->validateFields);
         }
 
-        return $track->sendRequest();
+        return $track;
     }
 }

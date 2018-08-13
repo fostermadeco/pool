@@ -107,6 +107,18 @@ class Screen extends BaseCall
      */
     public static function call($name, $properties = null, Authenticatable $model = null)
     {
+        return self::make($name, $properties, $model)->sendRequest();
+    }
+
+    /**
+     * @param string $name
+     * @param array|null $properties
+     * @param \Illuminate\Contracts\Auth\Authenticatable|null $model
+     * @return \FosterMadeCo\Pool\Calls\Screen
+     * @throws \FosterMadeCo\Pool\Exceptions\PoolException
+     */
+    public static function make($name, $properties = null, Authenticatable $model = null)
+    {
         $screen = new self($name);
         $screen->setIdentificationKey($model);
 
@@ -116,6 +128,6 @@ class Screen extends BaseCall
             $screen->properties->validate(true, $screen->validateFields);
         }
 
-        return $screen->sendRequest();
+        return $screen;
     }
 }

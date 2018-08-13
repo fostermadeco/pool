@@ -86,8 +86,19 @@ class Alias extends BaseCall
      */
     public static function call($previousId, Authenticatable $user)
     {
+        return self::make($previousId, $user)->sendRequest();
+    }
+
+    /**
+     * @param string|int $previousId
+     * @param \Illuminate\Contracts\Auth\Authenticatable|null $user
+     * @return \FosterMadeCo\Pool\Calls\Alias
+     * @throws \FosterMadeCo\Pool\Exceptions\PoolException
+     */
+    public static function make($previousId, Authenticatable $user)
+    {
         $alias = new self($previousId, $user);
 
-        return $alias->sendRequest();
+        return $alias;
     }
 }

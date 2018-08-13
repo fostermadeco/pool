@@ -105,8 +105,19 @@ class Group extends BaseCall
      */
     public static function call(Model $group, Authenticatable $user = null)
     {
+        return self::make($group, $user)->sendRequest();
+    }
+
+    /**
+     * @param \Illuminate\Database\Eloquent\Model $group
+     * @param \Illuminate\Contracts\Auth\Authenticatable|null $user = null
+     * @return \FosterMadeCo\Pool\Calls\Group
+     * @throws \FosterMadeCo\Pool\Exceptions\PoolException
+     */
+    public static function make(Model $group, Authenticatable $user = null)
+    {
         $group = new self($group, $user);
 
-        return $group->sendRequest();
+        return $group;
     }
 }

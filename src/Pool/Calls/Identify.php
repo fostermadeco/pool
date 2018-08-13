@@ -86,12 +86,23 @@ class Identify extends BaseCall
      */
     public static function call(Authenticatable $model = null, $traits = null)
     {
+        return self::make($model, $traits)->sendRequest();
+    }
+
+    /**
+     * @param \Illuminate\Contracts\Auth\Authenticatable|null $model
+     * @param array|null $traits
+     * @return \FosterMadeCo\Pool\Calls\Identify
+     * @throws \FosterMadeCo\Pool\Exceptions\PoolException
+     */
+    public static function make(Authenticatable $model = null, $traits = null)
+    {
         $identify = new self($model);
 
         if (!is_null($traits)) {
             $identify->setTraits($traits);
         }
 
-        return $identify->sendRequest();
+        return $identify;
     }
 }
