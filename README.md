@@ -1,6 +1,6 @@
 A Segment package for Laravel.
 
-The goal of this package is to make it easier to use Segmento within a Laravel package.
+The goal of this package is to make it easier to use Segment within a Laravel package.
 It formats the data as needed and uses `segmentio/analytics-php` to make the API calls.
 
 ## Installation
