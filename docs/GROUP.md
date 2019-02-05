@@ -52,7 +52,7 @@ class Company extends Model
         "address" => "segment_address",
     ];
 
-    public function getAddressAttribute()
+    public function getSegmentAddressAttribute()
     {
         return [
             "street" => $this->attributes["address"],
