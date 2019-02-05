@@ -43,6 +43,6 @@ Further setup is detailed in the documentation below.
 1. [Identify](docs/IDENTIFY.md)
 2. [Track](docs/TRACK.md)
 3. [Page](docs/PAGE.md)
-4. [Sreen](docs/SCREEN.md)
+4. [Screen](docs/SCREEN.md)
 5. [Group](docs/GROUP.md)
 6. [Alias](docs/ALIAS.md)
